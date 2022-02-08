@@ -1,5 +1,5 @@
 import axios from "axios"
-import { SIMILAR_FAIL, SIMILAR_RESPONSE, SIMILAR_SUCCESS, SINGLE_CAST_FAIL, SINGLE_CAST_RESPONSE, SINGLE_CAST_SUCCESS, SINGLE_FAIL, SINGLE_RESPONSE, SINGLE_SUCCESS } from "../constant/constant";
+import { LOADMORE_MOVIE_FAIL, LOADMORE_MOVIE_RESPONSE, LOADMORE_MOVIE_SUCCESS, SIMILAR_FAIL, SIMILAR_RESPONSE, SIMILAR_SUCCESS, SINGLE_CAST_FAIL, SINGLE_CAST_RESPONSE, SINGLE_CAST_SUCCESS, SINGLE_FAIL, SINGLE_RESPONSE, SINGLE_SUCCESS } from "../constant/constant";
 
 let accessKey = process.env.REACT_APP_ACCESSKEY_V3;
 let url = "https://api.themoviedb.org/3"
@@ -9,6 +9,7 @@ export const VideoDetail = (id) => async (dispatch) =>{
 
     try {
     const response = await axios.get(`${url}/movie/${id}?api_key=${accessKey}&append_to_response=videos`)
+ 
         dispatch({type:SINGLE_SUCCESS, payload:response.data})
     } catch (error) {
         dispatch({type:SINGLE_FAIL, payload:error.message})
@@ -33,9 +34,22 @@ export const SimilarMovies = (id) => async (dispatch) =>{
     dispatch({type:SIMILAR_RESPONSE})
 
     try {
-    const response = await axios.get(`${url}/movie/${id}/similar?api_key=${accessKey}`)
+    const response = await axios.get(`${url}/movie/${id}/similar?api_key=${accessKey}&page=1&append_to_response=videos`)
         dispatch({type:SIMILAR_SUCCESS, payload:response.data.results})
     } catch (error) {
         dispatch({type:SIMILAR_FAIL, payload:error.message})
+    }
+}
+// loadmore similar movies
+export const LoadMoreSimilarMovies = (id, page) => async (dispatch) =>{
+
+    dispatch({type:LOADMORE_MOVIE_RESPONSE})
+
+    try {
+        
+    const response = await axios.get(`${url}/movie/${id}/similar?api_key=${accessKey}&page=${page}&append_to_response=videos`)
+        dispatch({type:LOADMORE_MOVIE_SUCCESS, payload:response.data.results})
+    } catch (error) {
+        dispatch({type:LOADMORE_MOVIE_FAIL, payload:error.message})
     }
 }

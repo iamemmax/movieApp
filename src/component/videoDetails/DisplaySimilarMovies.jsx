@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {Button, Card, CardActionArea, CardContent, CardMedia,  Typography} from "@material-ui/core"
 import OutsideClickHandler from 'react-outside-click-handler';
 import { Link } from 'react-router-dom';
-
 import {useStyles} from "../Homepage/styles/DisplayMovie"
 import  * as AiIcons from "react-icons/ai";
 
@@ -10,25 +9,26 @@ import  * as AiIcons from "react-icons/ai";
 
 
 
-function DisplaySimilarMovies({data}) {
+function DisplaySimilarMovies({data, handlePlay}) {
+  
  
-    const classes = useStyles()
+    const {title, MovieAction, showMovieAction, card} = useStyles()
 
     const [movieAction, setMovieAction] = useState(false)
   
     const handleShowAction = (e) =>{
       setMovieAction(true)
     }
-    const handlePlay = (data) =>{
-    //   setSeletedVideo(data)
-    //   handlePlayTrailer(data)
-    }
-    let {title, MovieAction, showMovieAction} = classes
+   
+     
+    
     return( 
     
+      
   
         
-      <Card className={classes.card}  onClick={handleShowAction} elevation={0}> 
+        //{play && <PreviewVideo videoId={trailer.key}  handleCloseVideo={()=>setPlay(false)}/>}
+        <Card className={card}  onClick={handleShowAction} elevation={0}> 
               
         <CardActionArea>
           <CardMedia
@@ -39,7 +39,7 @@ function DisplaySimilarMovies({data}) {
           />
           <CardContent>
             <Typography   xs={5} variant="h6" component="h2" noWrap className={title}>
-              {data.title}
+              {data.title || data.name}
               
             </Typography>
             
@@ -48,7 +48,7 @@ function DisplaySimilarMovies({data}) {
            <OutsideClickHandler
              onOutsideClick={() => setMovieAction(false)}>
            <div className={movieAction ? MovieAction && showMovieAction   : MovieAction  }>
-             <div className="play" onClick={()=> handlePlay(data)} >
+             <div className="play" onClick={handlePlay }>
                <Button variant="contained" color="primary" size="small" startIcon={<AiIcons.AiOutlinePlayCircle />}>Play</Button>
               </div>
              <div className="View">

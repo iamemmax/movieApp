@@ -9,7 +9,7 @@ import  * as FaIcons from "react-icons/fa";
 function DisplayCast() {
 
   const Single = useSelector(state => state.Single)
-  let {single, casts} = Single
+  let {casts} = Single
 const classes = useStyles()
 
   return(

@@ -1,52 +1,87 @@
-import React from 'react';
-import { Grid, Typography, TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper} from '@material-ui/core';
+import React, {useState} from 'react';
+import { Grid, Typography, TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper, Button} from '@material-ui/core';
 import {useStyles} from "../../Pages/styles/singleStyle"
 import ReactStars from "react-rating-stars-component";
 import  * as AiIcons from "react-icons/ai";
+
 import moment from "moment"
 import {format} from "https://cdn.skypack.dev/d3-format@3";
 
+import YouTube from 'react-youtube';
+
 
 function DisplayDetails({single}) {
-    const classes = useStyles()
-    const f = format(".2s");
+  const f = format(".2s"); //formating number with k
+  let trailer = single.videos && single.videos.results.find(data => data.name === "Official Trailer" || data.type === "Trailer")
+
+    const [play, setPlay] = useState(false)
+    const [selectedVideo, setselectedVideo] = useState(false)
+    
+    const handlePlayTrailer = (selectedVideo) =>{
+      let id = selectedVideo.id
+      setselectedVideo(trailer)
+      setPlay(true)
+      console.log(id);
+    }
+    
+// youtube settings
+    const opts = {
+      height: '100%',
+      width: '100%',
+      playerVars: {
+        autoplay: 1,
+       
+      },
+    };
+    const {preview,   divContainer, close, title, videoImg,  votes, rating,ratingIcon, overview,
+       company, companyTitle } = useStyles()
 
 
-
-  return (
-  <div>
-     <Grid container spacing={5}>
+    return (
+  <div >
+     <Grid container spacing={5} className={divContainer}>
         <Grid item xs={12} sm={12} md={6}>
-            <div className={classes.videoImg} style={{backgroundImage:`url('https://image.tmdb.org/t/p/original/${single.backdrop_path}')`}}>
+            <div className={videoImg} style={{backgroundImage:`url('https://image.tmdb.org/t/p/original/${single.backdrop_path}')`}}>
+
+
+            
+            {!play && <Button  color="secondary" className={play} size="large" onClick={() =>handlePlayTrailer(selectedVideo)}><AiIcons.AiOutlinePlayCircle /></Button>}
+        
+         
+          { play ? <YouTube className={preview} videoId={trailer.key}   control={false}  containerClassName={preview} opts={opts}  /> : null}
+          { play && <Button variant="contained" color="primary" size="large" className={close} onClick={() =>setPlay(false)}>Close</Button>}
+
 
             </div>
         </Grid>
+
+
         <Grid item sm={12} md={6}>
             <div>
-                <Typography variant="h5" component="h2" className={classes.title}>{single.title || single.name}</Typography>
+                <Typography variant="h5" component="h2" className={title}>{single.title || single.name} hello </Typography>
                
-               <Grid container className={classes.votes} justifyContent="space-between">
+               <Grid container className={votes} justifyContent="space-between">
 
-                    <Grid  item className={classes.rating} xs={5}>
-                    <Typography variant="body1" className={classes.ratingIcon}> Ratings:
+                    <Grid  item className={rating} xs={5}>
+                    <Typography variant="body1" className={ratingIcon}> Ratings:
                     </Typography>
                     <ReactStars   count={5} size={18} isHalf={true} value={single?.vote_average/2} emptyIcon={<i className="far fa-star"></i>} halfIcon={<i className="fa fa-star-half-alt"></i>} fullIcon={<i className="fa fa-star"></i>} activeColor="#ffd700" edit={false} />
                     </Grid>  
 
-                    <Grid  item className={classes.rating} xs={5}  >
-                    <Typography variant="body1" className={classes.ratingIcon} align="right"> <AiIcons.AiOutlineLike />: {f(single.vote_count)}
+                    <Grid  item className={rating} xs={5}  >
+                    <Typography variant="body1" className={ratingIcon} align="right"> <AiIcons.AiOutlineLike />: {f(single.vote_count)}
                     </Typography>
                     
                     </Grid>  
 
                </Grid>
 
-                <Typography variant="body1" className={classes.overview}>Release Date: {moment(single.release_date).format('LLL') }</Typography>
+                <Typography variant="body1" className={overview}>Release Date: {moment(single.release_date).format('LLL') }</Typography>
                 
-                <Typography variant="body1" className={classes.overview}>{single.overview}</Typography>
+                <Typography variant="body1" className={overview}>{single.overview}</Typography>
             </div>   
-        <div className={classes.company}>
-            <Typography variant="h6" component="h2"  className={classes.companyTitle} gutterBottom>Production Companies</Typography>
+        <div className={company}>
+            <Typography variant="h6" component="h2"  className={companyTitle} gutterBottom>Production Companies</Typography>
             
             
 <TableContainer component={Paper}>

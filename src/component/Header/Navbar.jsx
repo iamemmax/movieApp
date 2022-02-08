@@ -1,83 +1,23 @@
 import React,{useState} from 'react';
 import {AppBar, Button, Tab, Tabs, Toolbar, Typography, useMediaQuery, useTheme,    Container } from "@material-ui/core"
-import { makeStyles } from '@material-ui/styles';
 import DrawerCom from './Drawer';
 import  * as FaIcons from "react-icons/fa";
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Search from '../Search';
-
+import {useStyles} from "./styles/navbar"
 // import SelectInput from '@material-ui/core/Select/SelectInput';
 
 // import menu from "@"
 
 
-const useStyles = makeStyles({
-    navs:{
-        marginLeft:"auto"
-    },
-    btns:{
-        marginLeft:"auto",
-        color:"#fff"
-    },
-    labelContainer: {
-        padding: 0,
-    },
-    bar:{
-        marginLeft:"auto",
-        fontSize:30,
-        cursor:"pointer"
-    },
-    search:{
-        margin:"0px auto",
-        outline:"none",
-        border:"none",
-        // height:"30px",
-        backgroundColor:"#fff",
-        padding:"5px 20px",
-        borderRadius:50,
-        width:"100%",
-        paddingRight:"3rem",
-        position:"relative"
-        
-    },
-    tab:{
-        width:120,
-        minWidth:120,
-        textTransform:"capitalize",
-        fontFamily:" 'Poppins', sans-serif;font-family: 'Montserrat', sans-serif",
-        fontSize:16,
-        transition:'color .5s ease',
-        '&:hover':{color:"#e28904"},
 
-        
-    },
-    active:{
-        backgroundColor:"#e28904",
-        borderBottom:"none",
-    },
-    searchBtn:{
-        position:"absolute",
-        right:"-2rem",
-        top:"50%",
-        color:"#e28904",
-        zIndex:5,
-        transform:"translate(-50%, -50%)",
-        cursor:"pointer",
-        fontSize:20
-    },
-    
-    link:{
-        textDecoration:"none",
-        color:"#fff"
-    }
-
-})
 
 
 function Navbar() {
     const theme =  useTheme()
     const isMatch = useMediaQuery(theme.breakpoints.down("md"))
     const classes = useStyles()
+
     let navLinks = [
         {
         "name":"Home",
@@ -107,7 +47,7 @@ function Navbar() {
         <Container>
      <AppBar>
          <Toolbar>
-             <Typography variant="h6" component="h2" color="inherit" >MovieApp</Typography>
+             <Typography variant="h6" component="h2" color="inherit" ><Link to="/"  className={classes.logo} >MovieApp</Link></Typography>
 
                 {isMatch ?
                 <>
