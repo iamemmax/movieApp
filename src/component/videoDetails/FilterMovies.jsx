@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import { Button, ButtonGroup, Grid } from '@material-ui/core'
 // import { motion } from "framer-motion"
 import { makeStyles } from '@material-ui/styles'
 // import {settings} from "../../component/SliderSetting"
@@ -38,7 +37,6 @@ const useStyles  = makeStyles((theme) =>({
             backgroundColor:theme.palette.secondary.main,
             color:"#fff",
             border:"none",
-            backgroundColor:'red'
         },
         '& filterslide':{
             border:"2px solid red"
