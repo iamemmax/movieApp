@@ -7,20 +7,29 @@ import {SearchQuery} from "../Redux/action/HomepageAction"
 
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) =>({
     
     search:{
         margin:"0px auto",
         outline:"none",
         border:"none",
-        // height:"30px",
+        height:"50px",
         backgroundColor:"#fff",
-        padding:"5px 20px",
+        padding:"5px",
         borderRadius:50,
         width:"100%",
-        paddingRight:"3rem",
-        position:"relative"
+        position:"relative",
+
+        [theme.breakpoints.only('md')]: {
+            // backgroundColor:theme.palette.secondary.main,
+            // width: '20ch',
+            width:"500px"
+          },
         
+
+        '& input':{
+            // width:"100%",
+        }
     },
    
     searchBtn:{
@@ -31,12 +40,28 @@ const useStyles = makeStyles({
         zIndex:5,
         transform:"translate(-50%, -50%)",
         cursor:"pointer",
-        fontSize:20
+        fontSize:20,
+
     },
+    searchBox:{
+        width:'100%',
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        
+        '& > *':{
+            width:'90%',
+      [theme.breakpoints.up("lg")]:{
+          width:"100%"
+      }
+
+
+        }
+    }
     
     
 
-})
+}))
 function Search() {
     //const [input, setInput] = useState("");
     const [query, setQuery] = useState("");
@@ -47,13 +72,14 @@ function Search() {
 const handleQuery =(e)=>{
     setQuery(e.target.value)
 }
-    const classes = useStyles()
+    const {search, searchBox} = useStyles()
   return (
-  <div>
+  <div className={searchBox}>
                        <IconButton>
                       
 
-                   <InputBase  placeholder='search ......' color='secondary' elevation={0} onInput={handleQuery} value={query}  classes={{root:classes.search}}/>
+                   <InputBase  placeholder='search ......' color='secondary' elevation={0} onInput={handleQuery} value={query} 
+                    classes={{root:search}}/>
 
                        </IconButton>
   </div>

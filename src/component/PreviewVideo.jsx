@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     previewBox:{
         height:"500px",
         width:"91%",
-        minHeight:"300px",
         backgroundColor:"#022431a2",
         position:"fixed",
         top:"4rem",
@@ -18,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
+
+        [theme.breakpoints.down('md')]: {
+            height:"300px"
+          },
 
         '& .middle':{
             backgroundColor:"#fff",
@@ -29,12 +32,16 @@ const useStyles = makeStyles((theme) => ({
         },
         '& .preview':{
             width:"100%",
-            height:"500px"
+            height:"500px",
+
+            [theme.breakpoints.down('md')]: {
+                height:"300px"
+              },
         },
         '& .close-Youtube':{
-          marginTop:"-4.5rem",
-        backgroundColor:theme.palette.secondary.main
-
+            
+          bottom:"4.5rem",
+       
         },
         
         

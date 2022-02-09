@@ -16,7 +16,7 @@ import {useStyles} from "./styles/navbar"
 function Navbar() {
     const theme =  useTheme()
     const isMatch = useMediaQuery(theme.breakpoints.down("md"))
-    const classes = useStyles()
+    const {mobile, laptop, logo, tab} = useStyles()
 
     let navLinks = [
         {
@@ -47,44 +47,58 @@ function Navbar() {
         <Container>
      <AppBar>
          <Toolbar>
-             <Typography variant="h6" component="h2" color="inherit" ><Link to="/"  className={classes.logo} >MovieApp</Link></Typography>
 
                 {isMatch ?
-                <>
-                <div className={classes.btns}>
-                <Search />
-                   </div> 
-                   <div className="search">
+               
+                <div className={mobile}>
+                    <div className="logo">
+                             <Typography variant="h6" component="h2" color="inherit" ><Link to="/" >MovieApp</Link></Typography>
+                            
+                            </div>  
+                    
+                        {/* <div className="search" > */}
+                        <Search  className="searchBbar" />
+                        
+                    {/* </div>  */}
+                    <div className="menu">
+                        <FaIcons.FaBars className="bar" onClick={()=>setOpenDrawer(true)} />
+                    </div>
 
-                <FaIcons.FaBars className={classes.bar} onClick={()=>setOpenDrawer(true)} />
-                   </div>
-               <div className="drawer">
+                    
+
+                <div className="drawer">
 
                 <DrawerCom  open={openDrawer} onClose ={()=>setOpenDrawer(false)} drawerlinkBtn={()=>setOpenDrawer(false)}/>
-               </div>
-
-                </>
+    </div>
+                </div>
                 :
-                <>
-                  <Tabs className={classes.navs} onChange={(e, active)=> setActive(active)} value={active}>
+                <div className={laptop}>
+                        <div className="logo">
+                             <Typography variant="h6" component="h2" color="inherit" ><Link to="/"  className={logo} >MovieApp</Link></Typography>
+                            
+                            </div>                      
+                      
+                        <div className="navigation">
+                        <Tabs className="tabs" onChange={(e, active)=> setActive(active)} value={active}>
 
 
-                 {navLinks.map((navbarLink, index)=>(
-                    <NavLink className={classes.link} to={navbarLink.path}><Tab label={navbarLink.name} key={index} classes={{root:classes.tab}}/></NavLink>
+                            {navLinks.map((navbarLink, index)=>(
+                                <NavLink to={navbarLink.path}><Tab label={navbarLink.name} key={index} classes={{root:tab}}/></NavLink>
 
 
-                 ))}
-                    </Tabs>
+                            ))}
+                        </Tabs>
+                        </div>
                     
-                   <div className={classes.btns}>
+                   <div className="search">
                        <Search />
                    </div>  
 
-             <div>
+                <div className="watchList">
 
-             <Button variant="contained" color="secondary" className={classes.btns}>WatchList</Button>
-             </div>
-                </>
+                    <Button variant="contained" color="secondary" className="watchList">WatchList</Button>
+                </div>
+                </div>
                 }
            
          </Toolbar>

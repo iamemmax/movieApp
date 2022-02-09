@@ -1,37 +1,28 @@
 import { makeStyles } from "@material-ui/styles"
-export const useStyles = makeStyles({
-    logo:{
-        textDecoration:"none",
-        color:"#fff"
-    },
-    navs:{
-        marginLeft:"auto"
-    },
-    btns:{
-        marginLeft:"auto",
-        color:"#fff"
-    },
-    labelContainer: {
-        padding: 0,
-    },
-    bar:{
-        marginLeft:"auto",
-        fontSize:30,
-        cursor:"pointer"
-    },
-    search:{
-        margin:"0px auto",
-        outline:"none",
-        border:"none",
-        // height:"30px",
-        backgroundColor:"#fff",
-        padding:"5px 20px",
-        borderRadius:50,
+export const useStyles = makeStyles((theme) => ({
+    laptop:{
         width:"100%",
-        paddingRight:"3rem",
-        position:"relative"
-        
+        display:"flex",
+        justifyContent:"space-between",
+        alignItems:"center",
+
+        '& .logo a':{
+            color:"#fff",
+            textDecoration:"none",
+        },
+        '& .navigation a':{
+            color:"#eee",
+            textDecoration:"none",
+            transition:"color .3s ease",
+
+            '&:hover':{
+            color:theme.palette.secondary.main,
+            
+            }
+        }
     },
+
+
     tab:{
         width:120,
         minWidth:120,
@@ -39,28 +30,29 @@ export const useStyles = makeStyles({
         fontFamily:" 'Poppins', sans-serif;font-family: 'Montserrat', sans-serif",
         fontSize:16,
         transition:'color .5s ease',
-        '&:hover':{color:"#e28904"},
+        // '&:hover':{color:"#e28904"},
 
         
     },
-    active:{
-        backgroundColor:"#e28904",
-        borderBottom:"none",
-    },
-    searchBtn:{
-        position:"absolute",
-        right:"-2rem",
-        top:"50%",
-        color:"#e28904",
-        zIndex:5,
-        transform:"translate(-50%, -50%)",
-        cursor:"pointer",
-        fontSize:20
-    },
     
-    link:{
-        textDecoration:"none",
-        color:"#fff"
-    }
+    mobile:{
+        width:"100%",
+        display:"flex",
+        justifyContent:"space-between",
+        alignItems:"center",
 
-})
+        '& .logo a':{
+            color:"#fff",
+            textDecoration:"none",
+        },
+        
+        
+      
+       
+        '& .drawer':{
+            position:"absolute"
+        }
+    },
+
+
+}))
