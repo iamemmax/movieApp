@@ -23,23 +23,23 @@ function Home() {
 
 
 
+  const Movies = useSelector(state => state.Movies)
+  let { movies} = Movies
   useEffect(() => {
     dispatch(TrendingFetch())  
     dispatch(MovieFetch(query))  
       setFiltered(movies)
-  }, [query, dispatch]);
+  }, [query, dispatch, movies]);
   
   
   
 
 
   const trend = useSelector(state => state.Trending)
-  const Movies = useSelector(state => state.Movies)
   const myTrailer = useSelector(state => state.Trailer)
     let {trailer} = myTrailer
 
     let {trending} = trend
-    let { movies} = Movies
 
     // let trailers = movies[0]
     
