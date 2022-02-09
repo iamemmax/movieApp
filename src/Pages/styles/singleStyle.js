@@ -1,15 +1,31 @@
 import {makeStyles} from "@material-ui/styles"
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) =>({
 
 
-    divContainer:{margin:"3rem 0", paddingBottom:"2rem", position:"relative"},
+    divContainer:{margin:"3rem 0", paddingBottom:"2rem", position:"relative",
+
+    '& .play':{
+       
+            position: "absolute",
+            top:"50%",
+            left:"50%",
+            transform:"translate(-50%, -50%)",
+            fontSize:"100px",
+            cursor:"pointer",
+            zIndex:5,
+         
+    
+    }
+
+},
+table:{paddengLeft:0},
     heading:{
 
-        fontSize:"25px",
+        fontSize:"20px",
         fontWeight:"600",
         textTransform:"capitalize",
-        padding:"10px 10px",
+        padding:"0px 10px",
 
     },
 
@@ -18,7 +34,11 @@ export const useStyles = makeStyles({
         backgroundPosition:" top",
         backgroundSize:"cover",
         backgroundRepeat:"no-repeat",
-        position:"relative"
+        position:"relative",
+
+        [theme.breakpoints.down("md")]:{
+            margin:"0"
+        }
 
     },
     title:{
@@ -86,17 +106,7 @@ export const useStyles = makeStyles({
         left:'0',
         zIndex:"11"
      },
-     play:{
-        position: "absolute",
-        top:"50%",
-        left:"50%",
-        transform:"translate(-50%, -50%)",
-        fontSize:"100px",
-        cursor:"pointer",
-        zIndex:5,
-        // color:"#fff"
-     }
-
+    
 
    
-   })
+   }))

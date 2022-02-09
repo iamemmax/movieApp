@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Box, Grid, Typography } from '@material-ui/core';
 import {TrendingFetch, MovieFetch,  TrailerAction, LoadMoreMovies} from "../Redux/action/HomepageAction"
 import {useDispatch, useSelector} from "react-redux"
 import DisplayTrending from '../component/Homepage/DisplayTrending';
@@ -103,6 +103,7 @@ function Home() {
     
     </div>
 
+<Box>
         <InfiniteScroll  scrollThreshold={0.6} dataLength={filtered.length} next={fetchMoreData} hasMore={true} loader={Movies.loading && <Loading /> }>
  
           <Grid container>
@@ -116,6 +117,7 @@ function Home() {
 
               </Grid>
             </InfiniteScroll>
+</Box>
 
 
   </div>

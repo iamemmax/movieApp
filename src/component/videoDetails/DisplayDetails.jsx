@@ -34,19 +34,19 @@ function DisplayDetails({single}) {
        
       },
     };
-    const {preview,   divContainer, close, title, videoImg,  votes, rating,ratingIcon, overview,
+    const {preview,   divContainer, close, title, videoImg,  votes, rating,ratingIcon, overview, table,
        company, companyTitle } = useStyles()
 
 
     return (
   <div >
-     <Grid container spacing={5} className={divContainer}>
+     <Grid container spacing={2} className={divContainer}>
         <Grid item xs={12} sm={12} md={6}>
             <div className={videoImg} style={{backgroundImage:`url('https://image.tmdb.org/t/p/original/${single.backdrop_path}')`}}>
 
 
             
-            {!play && <Button  color="secondary" className={play} size="large" onClick={() =>handlePlayTrailer(selectedVideo)}><AiIcons.AiOutlinePlayCircle /></Button>}
+            {!play && <Button  color="secondary" className="play" size="large" onClick={() =>handlePlayTrailer(selectedVideo)}><AiIcons.AiOutlinePlayCircle /></Button>}
         
          
           { play ? <YouTube className={preview} videoId={trailer.key}   control={false}  containerClassName={preview} opts={opts}  /> : null}
@@ -63,13 +63,13 @@ function DisplayDetails({single}) {
                
                <Grid container className={votes} justifyContent="space-between">
 
-                    <Grid  item className={rating} xs={5}>
+                    <Grid  item className={rating} xs={6}>
                     <Typography variant="body1" className={ratingIcon}> Ratings:
                     </Typography>
                     <ReactStars   count={5} size={18} isHalf={true} value={single?.vote_average/2} emptyIcon={<i className="far fa-star"></i>} halfIcon={<i className="fa fa-star-half-alt"></i>} fullIcon={<i className="fa fa-star"></i>} activeColor="#ffd700" edit={false} />
                     </Grid>  
 
-                    <Grid  item className={rating} xs={5}  >
+                    <Grid  item className={rating} xs={6}  >
                     <Typography variant="body1" className={ratingIcon} align="right"> <AiIcons.AiOutlineLike />: {f(single.vote_count)}
                     </Typography>
                     
@@ -85,8 +85,8 @@ function DisplayDetails({single}) {
             <Typography variant="h6" component="h2"  className={companyTitle} gutterBottom>Production Companies</Typography>
             
             
-<TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="caption table">
+<TableContainer component={Paper} >
+      <Table sx={{ minWidth: 650 }} aria-label="caption table" classes={{root:table}}>
       
         <TableHead>
           <TableRow>
