@@ -51,8 +51,16 @@ export const useStyles = makeStyles((theme) => ({
        
         '& .drawer':{
             position:"absolute"
+        },
+       
+        '& .menu':{
+            cursor:"pointer",
+
+            '& >  .bar':{
+                fontSize:"30px"
+            }
+
         }
     },
-
 
 }))

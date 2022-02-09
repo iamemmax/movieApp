@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 
- export const useStyles = makeStyles({
+ export const useStyles = makeStyles((theme) => ({
  title:{
    fontSize:14
  },
@@ -22,6 +22,8 @@ padding:"10px 0",
 
 
 
+
+
 },
 
 showMovieAction:{
@@ -35,6 +37,36 @@ width:"100%",
 justifyContent:"space-between",
 alignItems:"center",
 padding:"10px 0",
+[theme.breakpoints.down('sm')]:{
+ 
+  
+},
+
+'& p':{
+  [theme.breakpoints.down('sm')]:{
+    display:"none",
+    
+  },
+  
+
+
+},
+'& a':{
+ textDecoration:"none"
+    
+
+  },
+  '& .play':{
+    [theme.breakpoints.down('sm')]:{
+     margin:"0px",
+     width:"20px",
+     
+     backgroundColor:"red"
+      
+    },
+  },
+  
+  
 }
  
-})
+}))

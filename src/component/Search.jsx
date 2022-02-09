@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) =>({
         margin:"0px auto",
         outline:"none",
         border:"none",
-        height:"50px",
+        height:"35px",
         backgroundColor:"#fff",
         padding:"5px",
         borderRadius:50,
@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) =>({
 
         '& input':{
             // width:"100%",
+            paddingLeft:'15px',
+
         }
     },
    

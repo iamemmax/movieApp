@@ -9,7 +9,6 @@ function DisplayCast() {
     const Single = useSelector(state => state.Single)
     let {casts} = Single
 // let {cast} = Single
-console.log(Single)
 const classes = useStyles()
 
   return(

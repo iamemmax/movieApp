@@ -10,7 +10,6 @@ export const TrendingFetch = () => async (dispatch)=>{
 
     try {
         const response = await axios.get(`${Apiurl}/trending/all/day?api_key=${accessKey}&page=1`)
-        console.log(response);
         dispatch({type:FETCH_TRENDING_MOVIE_SUCCESS, payload:response.data.results})
     } catch (error) {
         dispatch({type:FETCH_TRENDING_MOVIE_FAIL, payload:error.message})
@@ -26,14 +25,12 @@ export const MovieFetch = (query) => async (dispatch)=>{
     try {
         query ? url = searchUrl : url = mainUrl
         const response = await axios.get(url)
-        console.log(response);
         dispatch({type:FETCH_MOVIE_SUCCESS, payload:response.data.results})
     } catch (error) {
         dispatch({type:FETCH_MOVIE_FAIL, payload:error.message})
     }
 }
 export const LoadMoreMovies = (query, page) => async (dispatch)=>{
-    console.log(page);
     let searchUrl = `${Apiurl}/search/movie/?api_key=${accessKey}&page=${page}&query=${query}`
     let mainUrl =  `${Apiurl}/discover/movie/?api_key=${accessKey}&page=${page}`
     let url
@@ -41,7 +38,6 @@ export const LoadMoreMovies = (query, page) => async (dispatch)=>{
     try {
         query ? url = searchUrl : url = mainUrl
         const response = await axios.get(url)
-        console.log(response);
         dispatch({type:LOADMORE_MOVIE_SUCCESS, payload:response.data.results})
     } catch (error) {
         dispatch({type:LOADMORE_MOVIE_FAIL, payload:error.message})
@@ -52,7 +48,6 @@ export const LoadMoreMovies = (query, page) => async (dispatch)=>{
 
 
 export const TrailerAction = (id) => async (dispatch) =>{
-console.log(id);
     let url = `${Apiurl}/movie/${id}?api_key=${accessKey}&append_to_response=videos`
     
     dispatch({type:WATCH_TRAILER_RESPONSE})

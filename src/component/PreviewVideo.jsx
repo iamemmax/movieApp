@@ -19,7 +19,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems:"center",
 
         [theme.breakpoints.down('md')]: {
-            height:"300px"
+            height:"300px",
+            right:0,
+            left:0,
           },
 
         '& .middle':{
@@ -39,8 +41,8 @@ const useStyles = makeStyles((theme) => ({
               },
         },
         '& .close-Youtube':{
-            
-          bottom:"4.5rem",
+            zIndex:99,
+          bottom:"6rem",
        
         },
         

@@ -26,7 +26,6 @@ export const TrendingReducer = (state = initialState, {type, payload}) =>{
         case FETCH_TRENDING_MOVIE_SUCCESS:
             return {...state, trending:[...state.trending, ...payload]}
         case FETCH_TRENDING_MOVIE_FAIL:
-        case LOADMORE_MOVIE_FAIL:
             return{...state, loading:false, error:payload}
             
     
@@ -61,25 +60,6 @@ export const MovieReducer = (state = initial, {type, payload}) =>{
     }
 }   
 
-// const initialTvState = {
-//     Tv:[]
-// }
-// export const TvReducer = (state = initialTvState, {type, payload}) =>{
-//     switch (type) {
-//         case FETCH_TV_RESPONSE:
-//             return{...state, loading:true}
-            
-//         case FETCH_TV_SUCCESS:
-//             return{...state, loading:false, tv:payload}
-            
-//         case FETCH_TV_FAIL:
-//             return{...state, loading:false, error:payload}
-            
-    
-//         default:
-//             return state;
-//     }
-// }   
 
 
 
@@ -87,7 +67,6 @@ const trailerState = {
     trailer:{}
 }
 export const TrailerReducer = (state = trailerState, {type, payload}) =>{
-    console.log(payload);
     switch (type) {
         case WATCH_TRAILER_RESPONSE:
             return{...state, loading:true}

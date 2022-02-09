@@ -22,7 +22,6 @@ function DisplayDetails({single}) {
       let id = selectedVideo.id
       setselectedVideo(trailer)
       setPlay(true)
-      console.log(id);
     }
     
 // youtube settings

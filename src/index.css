@@ -14,3 +14,36 @@ body{
 
 
 
+
+
+.FilterBtn{
+    width: 80%;
+    /* margin: 0px auto; */
+    padding-top: 4rem;
+
+
+}
+.FilterBtn   #btn{
+    margin: 10px !important;
+    background-color: transparent;
+    padding: 10px 20px;
+    width: 100px !important;
+    border-radius: 50px;
+    border: 1px solid #131921;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+
+}
+    @media screen and (max-width:768px) {
+     .FilterBtn{
+         width: 95%;
+     }   
+    }
+    
+
+.FilterBtn .active{
+    background-color: red;
+}
+
+
