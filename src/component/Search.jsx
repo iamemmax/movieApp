@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) =>({
         
         '& > *':{
             width:'90%',
+            paddingLeft:'20px',
       [theme.breakpoints.up("lg")]:{
           width:"100%"
       }
@@ -78,7 +79,7 @@ const handleQuery =(e)=>{
                        <IconButton>
                       
 
-                   <InputBase  placeholder='search ......' color='secondary' elevation={0} onInput={handleQuery} value={query} 
+                   <InputBase  placeholder='search ......' color='secondary' disableElevation elevation={0} onInput={handleQuery} value={query} 
                     classes={{root:search}}/>
 
                        </IconButton>

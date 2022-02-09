@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Card, CardActionArea, CardContent, CardMedia,    Typography} from "@material-ui/core"
+import {Button, Card, CardActionArea, CardContent, CardMedia, Typography} from "@material-ui/core"
 import { Link } from 'react-router-dom';
 // import { makeStyles } from '@material-ui/styles';
 import {useStyles} from "../Homepage/styles/DisplayMovie"

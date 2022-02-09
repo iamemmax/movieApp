@@ -5,7 +5,8 @@ import ReactStars from "react-rating-stars-component";
 import  * as AiIcons from "react-icons/ai";
 
 import moment from "moment"
-import {format} from "https://cdn.skypack.dev/d3-format@3";
+// import {format} from "https://cdn.skypack.dev/d3-format@3";
+import {format} from "d3-format";
 
 import YouTube from 'react-youtube';
 
