@@ -70,7 +70,7 @@ function Home() {
     setPage(page+1)
     dispatch(LoadMoreMovies(query, page))
   }
-  
+  console.log("123");
   return (
   <div>
   
