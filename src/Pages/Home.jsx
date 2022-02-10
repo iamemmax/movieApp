@@ -29,7 +29,7 @@ function Home() {
     dispatch(TrendingFetch())  
     dispatch(MovieFetch(query))  
       setFiltered(movies)
-  }, [query, dispatch]);
+  }, [query, dispatch, movies]);
   
   
   
