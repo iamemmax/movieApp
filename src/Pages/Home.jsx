@@ -29,7 +29,7 @@ function Home() {
     dispatch(TrendingFetch())  
     dispatch(MovieFetch(query))  
       setFiltered(movies)
-  }, [query, dispatch, movies]);
+  }, [query, dispatch]);
   
   
   
@@ -104,10 +104,10 @@ function Home() {
     </div>
 
 
-  <InfiniteScroll  scrollThreshold={0.6} dataLength={filtered.length} next={fetchMoreData} hasMore={true} loader={Movies.loading && <Loading /> }>
+  <InfiniteScroll  scrollThreshold={0.6} dataLength={movies.length} next={fetchMoreData} hasMore={true} loader={Movies.loading && <Loading /> }>
  
           <Grid container>
-            {filtered && filtered.map(data=> (
+            {movies && movies.map(data=> (
               <Grid item xs={6} sm={4} md={3} lg={2}  key={data.id}>
                  <DisplayMovies handlePlayTrailer={handlePlayTrailer} setSeletedVideo={setSeletedVideo}  data={data}  className={grids}/>
 
