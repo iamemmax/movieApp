@@ -28,7 +28,7 @@ const classes = useStyles()
 let navLinks = [
     {
     "name":"Home",
-    "path":"/home",
+    "path":"/",
     "icon" : <AiIcons.AiOutlineHome/>
 },
     {

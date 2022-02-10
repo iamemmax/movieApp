@@ -1,13 +1,11 @@
 import React,{useState} from 'react';
-import {AppBar, Button, Tab, Tabs, Toolbar, Typography, useMediaQuery, useTheme,    Container } from "@material-ui/core"
+import {AppBar, Button, Tab, Tabs, Toolbar, Typography, useMediaQuery, useTheme, Container } from "@material-ui/core"
 import DrawerCom from './Drawer';
 import  * as FaIcons from "react-icons/fa";
 import { Link, NavLink } from 'react-router-dom';
 import Search from '../Search';
 import {useStyles} from "./styles/navbar"
-// import SelectInput from '@material-ui/core/Select/SelectInput';
 
-// import menu from "@"
 
 
 
@@ -83,7 +81,7 @@ function Navbar() {
 
 
                             {navLinks.map((navbarLink, index)=>(
-                                <NavLink to={navbarLink.path}><Tab label={navbarLink.name} key={index} classes={{root:tab}}/></NavLink>
+                                <NavLink to={navbarLink.path}  key={index}><Tab label={navbarLink.name} classes={{root:tab}}/></NavLink>
 
 
                             ))}

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Box, Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import {TrendingFetch, MovieFetch,  TrailerAction, LoadMoreMovies} from "../Redux/action/HomepageAction"
 import {useDispatch, useSelector} from "react-redux"
 import DisplayTrending from '../component/Homepage/DisplayTrending';
@@ -103,12 +103,12 @@ function Home() {
     
     </div>
 
-<Box>
-        <InfiniteScroll  scrollThreshold={0.6} dataLength={filtered.length} next={fetchMoreData} hasMore={true} loader={Movies.loading && <Loading /> }>
+
+  <InfiniteScroll  scrollThreshold={0.6} dataLength={filtered.length} next={fetchMoreData} hasMore={true} loader={Movies.loading && <Loading /> }>
  
           <Grid container>
             {filtered && filtered.map(data=> (
-              <Grid item xs={6} sm={6} md={4} lg={2}  key={data.id}>
+              <Grid item xs={6} sm={4} md={3} lg={2}  key={data.id}>
                  <DisplayMovies handlePlayTrailer={handlePlayTrailer} setSeletedVideo={setSeletedVideo}  data={data}  className={grids}/>
 
               </Grid>
@@ -117,7 +117,7 @@ function Home() {
 
               </Grid>
             </InfiniteScroll>
-</Box>
+
 
 
   </div>

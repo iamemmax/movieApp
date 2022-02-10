@@ -1,6 +1,6 @@
 import React from 'react';
 import {makeStyles} from  "@material-ui/styles"
-import { LineWave } from  'react-loader-spinner'
+import { Circles } from  'react-loader-spinner'
 
 const useStyles = makeStyles({
    loader:{
@@ -19,7 +19,7 @@ function Loading() {
     
   return (
     	<div className={classes.loader} >
-        <LineWave  color="#E28904"  height={100} width={100} />
+        <Circles  color="#E28904"  height={50} width={50} />
         </div>
   )
   ;

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import {Button, Card, CardActionArea, CardContent, CardMedia,  Typography} from "@material-ui/core"
 import OutsideClickHandler from 'react-outside-click-handler';
-import { Link } from 'react-router-dom';
+import slugify from 'react-slugify';
 import {useStyles} from "../Homepage/styles/DisplayMovie"
 import  * as AiIcons from "react-icons/ai";
-
 
 
 
@@ -19,9 +18,9 @@ function DisplaySimilarMovies({data, handlePlay}) {
     const handleShowAction = (e) =>{
       setMovieAction(true)
     }
+    const slug = slugify(data.title ||data.name )
    
      
-    
     return( 
     
       
@@ -45,17 +44,18 @@ function DisplaySimilarMovies({data, handlePlay}) {
             
            </CardContent> 
   
-           <OutsideClickHandler
-             onOutsideClick={() => setMovieAction(false)}>
+           <>
+           <OutsideClickHandler   onOutsideClick={() => setMovieAction(false)}> 
            <div className={movieAction ? MovieAction && showMovieAction   : MovieAction  }>
              <div className="play" onClick={handlePlay }>
                <Button variant="contained" color="primary" size="small" startIcon={<AiIcons.AiOutlinePlayCircle />}>Play</Button>
               </div>
              <div className="View">
-              <Link to={`/${data.title||data.name}/${data.id}`}> <Button variant="contained" size="small"endIcon={<AiIcons.AiOutlineEyeInvisible/>} >View</Button>
-               </Link></div>
+             <Button href={`/${slug}/${data.id}`} variant="contained" size="small"endIcon={<AiIcons.AiOutlineEyeInvisible/>} >View</Button>
+              </div>
            </div>
            </OutsideClickHandler>
+           </>
         </CardActionArea> 
         </Card>
              
