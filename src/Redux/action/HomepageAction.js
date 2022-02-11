@@ -1,4 +1,4 @@
-import { FETCH_MOVIE_FAIL, FETCH_MOVIE_RESPONSE, FETCH_MOVIE_SUCCESS, FETCH_TRENDING_MOVIE_FAIL, FETCH_TRENDING_MOVIE_RESPONSE, FETCH_TRENDING_MOVIE_SUCCESS, LOADMORE_MOVIE_FAIL, LOADMORE_MOVIE_RESPONSE, LOADMORE_MOVIE_SUCCESS, SEARCH_QUERY, WATCH_TRAILER_FAIL, WATCH_TRAILER_RESPONSE, WATCH_TRAILER_SUCCESS } from "../constant/constant"
+import { FETCH_MOVIE_FAIL, FETCH_MOVIE_RESPONSE, FETCH_MOVIE_SUCCESS, FETCH_TRENDING_MOVIE_FAIL, FETCH_TRENDING_MOVIE_RESPONSE, FETCH_TRENDING_MOVIE_SUCCESS,  FILTER_MOVIES_FAIL, FILTER_MOVIES_RESPONSE, FILTER_MOVIES_SUCCESS, LOADMORE_MOVIE_FAIL, LOADMORE_MOVIE_RESPONSE, LOADMORE_MOVIE_SUCCESS, SEARCH_QUERY, WATCH_TRAILER_FAIL, WATCH_TRAILER_RESPONSE, WATCH_TRAILER_SUCCESS } from "../constant/constant"
 
 import axios from "axios"
 
@@ -17,17 +17,22 @@ export const TrendingFetch = () => async (dispatch)=>{
 }
 
 // fetch movies
-export const MovieFetch = (query) => async (dispatch)=>{
+export const MovieFetch = (query, genres) => async (dispatch)=>{
     let searchUrl = `${Apiurl}/search/movie/?api_key=${accessKey}&page=1&query=${query}`
     let mainUrl =  `${Apiurl}/discover/movie/?api_key=${accessKey}&page=1`
     let url
+    console.log(genres);
     dispatch({type:FETCH_MOVIE_RESPONSE})
+    dispatch({type:FILTER_MOVIES_RESPONSE})
     try {
         query ? url = searchUrl : url = mainUrl
         const response = await axios.get(url)
         dispatch({type:FETCH_MOVIE_SUCCESS, payload:response.data.results})
+        dispatch({type:FILTER_MOVIES_SUCCESS, payload:genres})
+
     } catch (error) {
         dispatch({type:FETCH_MOVIE_FAIL, payload:error.message})
+        dispatch({type:FILTER_MOVIES_FAIL, payload:error.message})
     }
 }
 export const LoadMoreMovies = (query, page) => async (dispatch)=>{

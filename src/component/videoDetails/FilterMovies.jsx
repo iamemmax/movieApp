@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 // import { motion } from "framer-motion"
 import { makeStyles } from '@material-ui/styles'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import { Button, Grid } from '@material-ui/core';
+import {  Grid } from '@material-ui/core';
 
 const useStyles  = makeStyles((theme) =>({
 
@@ -22,10 +22,12 @@ const useStyles  = makeStyles((theme) =>({
         
         '&  > * button':{
             margin:"10px",
-           
+           padding:"10px 25px",
         borderRadius:"30px",
-        
-
+        outline:"none",
+        backgroundColor:"transparent",
+            border:"1px solid #eee"
+,
         [theme.breakpoints.down('sm')]:{
             fontSize:12,
             margin:10
@@ -41,40 +43,35 @@ const useStyles  = makeStyles((theme) =>({
     },
 }))
 
-function FilterMovies({setFiltered, genres, setGenres, movies}) {
-    useEffect(() =>{
+function FilterMovies({handleFilter, genres}) {
+   
 
-        if(genres === 0){
-            setFiltered(movies)
-            return
-        }
-        const FilteredMovies = movies.filter((data) => data.genre_ids.includes(genres))
-        
-            setFiltered(FilteredMovies)
-        
-    }, [genres,  setFiltered , movies])
+
+       
 
 
     const {filterBtn} = useStyles()
-
 
 
   return (
     <div className={filterBtn}>
 
        
-        {/* <Slider {...settings}> */}
+
+        
            <Grid container  >
              <Grid item xs={12} md={12} >
 
-                
-                <Button  variant="outlined"   className={genres === 0 ? "active" : "" } onClick={()=>setGenres(0)} >All</Button>
-                <Button   variant="outlined"  className={genres === 28 ? "active" : ""} onClick={()=>setGenres(28)}  >Action</Button>
-                <Button  variant="outlined"  className={genres ===35 ? "active" : ""} onClick={()=>setGenres(35)}  >Comedy</Button>
-                <Button  variant="outlined"  className={genres === 80 ? "active" : ""} onClick={()=>setGenres(80)}  >Crime</Button>
-                <Button  variant="outlined"  className={genres === 10752 ? "active" : ""} onClick={()=>setGenres(10752)}  >War</Button>
-                <Button  variant="outlined"  className={genres === 10749 ? "active" : ""} onClick={()=>setGenres(10749)}  >Romance</Button>
-                <Button  variant="outlined"  className={genres === 18 ? "active" : ""} onClick={()=>setGenres(18)}  >Drama</Button>
+
+                {/* <Button type="button"  variant="outlined"  value="0"    onClick={handleFilter} >All</Button> */}
+
+                <button type="button"  variant="outlined"  value="0"    className={genres === 0 ? "active" : ""}  onClick={handleFilter} >All</button>
+                <button   variant="outlined" value="28"   className={genres === 28 ? "active" : ""} onClick={handleFilter}  >Action</button>
+                <button  variant="outlined"  value="35"   className={genres === 35 ? "active" : ""} onClick={handleFilter}  >Comedy</button>
+                <button  variant="outlined"  value="80"   className={genres === 80 ? "active" : ""} onClick={handleFilter}  >Crime</button>
+                <button  variant="outlined"   value="10752"   className={genres === 10752 ? "active" : ""} onClick={handleFilter}  >War</button>
+                <button  variant="outlined"   value="10749"    className={genres === 10749 ? "active" : ""} onClick={handleFilter}  >Romance</button>
+                <button  variant="outlined"  value="18"   className={genres === 18 ? "active" : ""} onClick={handleFilter}  >Drama</button>
             {/* </Slider > */}
             
            </Grid>

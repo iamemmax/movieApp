@@ -39,6 +39,9 @@ const theme = createTheme({
     },
     body2:{
       fontFamily:" 'Poppins', sans-serif;font-family: 'Montserrat', sans-serif"
+    },
+    button:{
+      fontFamily:" 'Poppins', sans-serif;font-family: 'Montserrat', sans-serif"
     }
   }
 })

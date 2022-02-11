@@ -24,13 +24,24 @@ function Home() {
 
 
   const Movies = useSelector(state => state.Movies)
-  let { movies} = Movies
+  let { movies, filterMovies} = Movies
+
+// const [move, setmove] = useState(initialState);
+console.log(filterMovies);
+ 
+  const [genres, setGenres] = useState(0);
+
+ 
+  console.log(genres);
+  const handleFilter =(e) =>{
+     setGenres(e.target.value)
+   }
   useEffect(() => {
+
+
     dispatch(TrendingFetch())  
-    dispatch(MovieFetch(query))  
-      setFiltered(movies)
-  }, [query, dispatch, movies]);
-  
+    dispatch(MovieFetch(query, genres))  
+  }, [query, dispatch, genres]);
   
   
 
@@ -46,10 +57,7 @@ function Home() {
     const [selectedVideo, setSeletedVideo] = useState({})
     const [play, setPlay] = useState(false)
     const [page, setPage] = useState(2)
-    const [filtered, setFiltered] = useState([])
-    const [genres, setGenres] = useState(0)
-    
-
+   
     
 
   const {grids} = useStyles()
@@ -70,7 +78,6 @@ function Home() {
     setPage(page+1)
     dispatch(LoadMoreMovies(query, page))
   }
-  console.log("123");
   return (
   <div>
   
@@ -99,15 +106,15 @@ function Home() {
 
     <div className="filterMovie">
   
-      <FilterMovies  filtered={filtered} setFiltered={setFiltered} genres={genres} movies={movies} setGenres={setGenres}/>
+      <FilterMovies handleFilter={handleFilter}  genres={parseInt(genres)}/>
     
     </div>
 
 
-  <InfiniteScroll  scrollThreshold={0.6} dataLength={movies.length} next={fetchMoreData} hasMore={true} loader={Movies.loading && <Loading /> }>
+  <InfiniteScroll  scrollThreshold={0.1} dataLength={filterMovies?.length || movies.length} next={fetchMoreData} hasMore={true} loader={Movies.loading && <Loading /> }>
  
           <Grid container>
-            {movies && movies.map(data=> (
+            {filterMovies?.map(data=> (
               <Grid item xs={6} sm={4} md={3} lg={2}  key={data.id}>
                  <DisplayMovies handlePlayTrailer={handlePlayTrailer} setSeletedVideo={setSeletedVideo}  data={data}  className={grids}/>
 
