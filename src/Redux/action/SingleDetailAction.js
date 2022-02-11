@@ -34,7 +34,7 @@ export const SimilarMovies = (id) => async (dispatch) =>{
     dispatch({type:SIMILAR_RESPONSE})
 
     try {
-    const response = await axios.get(`${url}/movie/${id}/similar?api_key=${accessKey}&page=1&append_to_response=videos`)
+    const response = await axios.get(`${url}/movie/${id}/recommendations?api_key=${accessKey}&page=1&append_to_response=videos`)
         dispatch({type:SIMILAR_SUCCESS, payload:response.data.results})
     } catch (error) {
         dispatch({type:SIMILAR_FAIL, payload:error.message})

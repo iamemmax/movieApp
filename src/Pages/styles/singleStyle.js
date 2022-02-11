@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme) =>({
 
     divContainer:{margin:"3rem 0", paddingBottom:"2rem", position:"relative",
 
-    '& .play':{
+    '& .playBtn':{
        
             position: "absolute",
             top:"50%",
@@ -37,7 +37,13 @@ table:{paddengLeft:0},
         position:"relative",
 
         [theme.breakpoints.down("md")]:{
-            margin:"0"
+            margin:"0",
+            height:"300px",
+            width:"100%",
+        },
+        [theme.breakpoints.only("md")]:{
+            margin:"0",
+            height:"400px",
         }
 
     },

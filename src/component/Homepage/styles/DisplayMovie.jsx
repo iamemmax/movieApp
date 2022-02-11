@@ -6,7 +6,8 @@ import { makeStyles } from '@material-ui/styles';
  },
  card:{
   margin:7,
-  position:"relative"
+  position:"relative",
+  cursor:'pointer',
 }, 
 MovieAction:{
 position:"absolute",
@@ -37,12 +38,16 @@ width:"100%",
 justifyContent:"space-between",
 alignItems:"center",
 padding:"10px 0",
+
 [theme.breakpoints.down('sm')]:{
  
   
 },
 
-'& p':{
+'&  .action ':{
+  padding:"2px",
+
+  
   [theme.breakpoints.down('sm')]:{
     display:"none",
     
@@ -57,14 +62,18 @@ padding:"10px 0",
 
   },
   '& .play':{
-    [theme.breakpoints.down('sm')]:{
-     margin:"0px",
-     width:"20px",
+    // [theme.breakpoints.down('sm')]:{
+    //  margin:"0px",
+    //  width:"20px",
      
-     backgroundColor:"red"
+     
       
-    },
+    // },
   },
+
+  '&  * button ':{
+    padding:"2px",
+  }  
   
   
 }

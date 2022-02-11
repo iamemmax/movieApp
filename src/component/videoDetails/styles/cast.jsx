@@ -5,6 +5,7 @@ export const useStyles = makeStyles({
        marginTop:"2rem",
    },
    divContainer:{margin:"3rem 0", paddingBottom:"2rem"},
+   
     heading:{
 
         fontSize:"25px",

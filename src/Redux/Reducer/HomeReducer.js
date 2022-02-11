@@ -1,4 +1,4 @@
-import { FETCH_MOVIE_FAIL, FETCH_MOVIE_RESPONSE, FETCH_MOVIE_SUCCESS, FETCH_TRENDING_MOVIE_FAIL, FETCH_TRENDING_MOVIE_RESPONSE, FETCH_TRENDING_MOVIE_SUCCESS, FILTER_MOVIES_RESPONSE, FILTER_MOVIES_SUCCESS, LOADMORE_MOVIE_FAIL, LOADMORE_MOVIE_RESPONSE, LOADMORE_MOVIE_SUCCESS, SEARCH_QUERY, WATCH_TRAILER_FAIL, WATCH_TRAILER_RESPONSE, WATCH_TRAILER_SUCCESS } from "../constant/constant";
+import { FETCH_MOVIE_FAIL, FETCH_MOVIE_RESPONSE, FETCH_MOVIE_SUCCESS, FETCH_TRENDING_MOVIE_FAIL, FETCH_TRENDING_MOVIE_RESPONSE, FETCH_TRENDING_MOVIE_SUCCESS, FILTER_MOVIES_RESPONSE, FILTER_MOVIES_SUCCESS, LOADMORE_MOVIE_FAIL, LOADMORE_MOVIE_RESPONSE, LOADMORE_MOVIE_SUCCESS, SEARCH_QUERY, SET_FILTER, WATCH_TRAILER_FAIL, WATCH_TRAILER_RESPONSE, WATCH_TRAILER_SUCCESS } from "../constant/constant";
 
 // let initialQuery = ""
 export const Searchquery = (state ={}, {type, payload}) =>{
@@ -43,27 +43,18 @@ export const MovieReducer = (state = initial, {type, payload}) =>{
         case FETCH_MOVIE_RESPONSE:
         case FILTER_MOVIES_RESPONSE:
         case LOADMORE_MOVIE_RESPONSE:
-
             return{...state, loading:true}
-         case FETCH_MOVIE_SUCCESS:
+            case FETCH_MOVIE_SUCCESS:
                 return{...state, loading:false, movies:payload}
 
-      
-            // return {...state}
-        case  FILTER_MOVIES_SUCCESS:
+        case  SET_FILTER:
             let movieState = state.movies
-           
-            if(parseInt(payload) === 0){
                 return {...state, loading:false, filterMovies:movieState}
-            }else{
-               
-                const filtereds = movieState.filter( data => data.genre_ids.includes(parseInt(payload)))
-              
-                return {...state, loading:false, filterMovies:filtereds}
-            }
-           
+                
             
             
+            case  FILTER_MOVIES_SUCCESS:
+                return {...state, loading:false, filterMovies:payload}
             
         case LOADMORE_MOVIE_SUCCESS:
             return {...state, movies:[...state.movies, ...payload], filterMovies:[...state.movies, ...payload] }

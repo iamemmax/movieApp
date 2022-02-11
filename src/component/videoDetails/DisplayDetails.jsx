@@ -46,7 +46,7 @@ function DisplayDetails({single}) {
 
 
             
-            {!play && <Button  color="secondary" className="play" size="large" onClick={() =>handlePlayTrailer(selectedVideo)}><AiIcons.AiOutlinePlayCircle /></Button>}
+            {!play && <Button  color="secondary" className="playBtn" size="large" onClick={() =>handlePlayTrailer(selectedVideo)}><AiIcons.AiOutlinePlayCircle /></Button>}
         
          
           { play ? <YouTube className={preview} videoId={trailer.key}   control={false}  containerClassName={preview} opts={opts}  /> : null}
@@ -81,7 +81,9 @@ function DisplayDetails({single}) {
                 
                 <Typography variant="body1" className={overview}>{single.overview}</Typography>
             </div>   
-        <div className={company}>
+        
+            <Grid item xs={12}>
+            <div className={company}>
             <Typography variant="h6" component="h2"  className={companyTitle} gutterBottom>Production Companies</Typography>
             
             
@@ -111,6 +113,7 @@ function DisplayDetails({single}) {
       </Table>
     </TableContainer>
         </div>
+            </Grid>
             </Grid>
      </Grid>
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Grid, Typography } from '@material-ui/core';
-import {TrendingFetch, MovieFetch,  TrailerAction, LoadMoreMovies} from "../Redux/action/HomepageAction"
+import {TrendingFetch, MovieFetch,  TrailerAction,FilteredMovies,  LoadMoreMovies} from "../Redux/action/HomepageAction"
 import {useDispatch, useSelector} from "react-redux"
 import DisplayTrending from '../component/Homepage/DisplayTrending';
 import DisplayMovies from '../component/Homepage/DisplayMovies';
@@ -12,7 +12,7 @@ import {settings} from "../component/SliderSetting"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import FilterMovies from '../component/videoDetails/FilterMovies';
+import FilterMovies from '../component/Homepage/FilterMovies';
 
 
 
@@ -26,22 +26,22 @@ function Home() {
   const Movies = useSelector(state => state.Movies)
   let { movies, filterMovies} = Movies
 
-// const [move, setmove] = useState(initialState);
-console.log(filterMovies);
  
-  const [genres, setGenres] = useState(0);
+  const [filterAllMovies, setfilterAllMovies] = useState("popular");
 
  
-  console.log(genres);
+  console.log(filterAllMovies);
   const handleFilter =(e) =>{
-     setGenres(e.target.value)
+     setfilterAllMovies(e.target.value)
    }
   useEffect(() => {
 
 
     dispatch(TrendingFetch())  
-    dispatch(MovieFetch(query, genres))  
-  }, [query, dispatch, genres]);
+    dispatch(MovieFetch(query)) 
+    dispatch(FilteredMovies(filterAllMovies)) 
+     
+  }, [query, dispatch, filterAllMovies]);
   
   
 
@@ -76,7 +76,7 @@ console.log(filterMovies);
  
   const fetchMoreData =() =>{
     setPage(page+1)
-    dispatch(LoadMoreMovies(query, page))
+    dispatch(LoadMoreMovies(query, page, filterAllMovies ))
   }
   return (
   <div>
@@ -88,12 +88,10 @@ console.log(filterMovies);
 
     <div>
 
-    <Typography variant='h6' component="h2" gutterBottom>Trending</Typography>
-          
-            {trending.loading && <Loading />
-            
-      }
-      <Slider {...settings}>
+          {/* trending movies */}
+            {trending.loading && <Loading />}
+          <Typography variant='h6' component="h2" gutterBottom>TRENDING MOVIES</Typography> 
+            <Slider {...settings}>
             {trending && trending.map(data=> <DisplayTrending  handlePlayTrailer={handlePlayTrailer} movies={movies} setSeletedVideo={setSeletedVideo} data={data}  key={data.id} className={grids} />
            
            )}
@@ -102,16 +100,16 @@ console.log(filterMovies);
 
 
   <div className="movie">
-    <Typography variant='h6' component="h2" gutterBottom>Popular Movies</Typography>
+  {filterMovies && <Typography variant='h6' component="h2" gutterBottom>POPULAR MOVIES</Typography>
 
-    <div className="filterMovie">
+ }
+    {filterMovies &&<div className="filterMovie">
   
-      <FilterMovies handleFilter={handleFilter}  genres={parseInt(genres)}/>
+      <FilterMovies handleFilter={handleFilter}  filterAllMovies={filterAllMovies}/>
     
-    </div>
+    </div>}
 
-
-  <InfiniteScroll  scrollThreshold={0.1} dataLength={filterMovies?.length || movies.length} next={fetchMoreData} hasMore={true} loader={Movies.loading && <Loading /> }>
+  <InfiniteScroll  scrollThreshold={0.6} dataLength={filterMovies?.length || movies.length} next={fetchMoreData} hasMore={true} loader={Movies.loading && <Loading /> }>
  
           <Grid container>
             {filterMovies?.map(data=> (
@@ -124,6 +122,7 @@ console.log(filterMovies);
 
               </Grid>
             </InfiniteScroll>
+
 
 
 

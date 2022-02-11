@@ -46,10 +46,10 @@ function DisplayMovies({data, setSeletedVideo, handlePlayTrailer}) {
          <OutsideClickHandler onOutsideClick={() => setMovieAction(false)}>
          <div className={movieAction ? MovieAction && showMovieAction   : MovieAction  }>
            <div className="play" onClick={()=> handlePlay(data)} >
-             <Button variant="contained" color="primary" size="small"  startIcon={<AiIcons.AiOutlinePlayCircle />}><p>Play</p></Button>
+             <Button variant="contained" color="primary" size="small"  startIcon={<AiIcons.AiOutlinePlayCircle />}><span className="action" >Play</span></Button>
             </div>
            <div className="View">
-            <Link to={`/${slug}/${data.id}`}> <Button variant="contained" size="small"endIcon={<AiIcons.AiOutlineEyeInvisible/>} ><p>View</p></Button>
+            <Link to={`/${slug}/${data.id}`}> <Button variant="contained" size="small"endIcon={<AiIcons.AiOutlineEyeInvisible/>}> <span className="action">View</span> </Button>
              </Link></div>
          </div>
          </OutsideClickHandler>
