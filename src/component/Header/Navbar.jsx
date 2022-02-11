@@ -17,15 +17,15 @@ function Navbar() {
     const {mobile, laptop, logo, tab} = useStyles()
 
     let navLinks = [
-        {
-        "name":"Home",
-        "path":"/",
         
-    },
         {
         "name":"Movies",
-        "path":"/movies",
+        "path":"/",
     },
+    {"name":"Tv series",
+        "path":"/tv", 
+    },
+    
         {
         "name":"Episode",
         "path":"/episode",
@@ -33,10 +33,7 @@ function Navbar() {
         {"name":"Trending",
         "path":"/Trending", 
     },
-        {"name":"Tv series",
-        "path":"/tv", 
-    },
-    
+        
     ]
     const [openDrawer, setOpenDrawer] = useState(false);
     const [active, setActive] = useState(0);

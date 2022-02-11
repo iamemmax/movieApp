@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import slugify from 'react-slugify';
 import {useStyles} from "../Homepage/styles/DisplayMovie"
 import  * as AiIcons from "react-icons/ai";
+import {motion} from "framer-motion"
+
+
 
 function DisplayMovies({data, setSeletedVideo, handlePlayTrailer}) {
 
@@ -20,13 +23,29 @@ function DisplayMovies({data, setSeletedVideo, handlePlayTrailer}) {
     handlePlayTrailer(data)
   }
   let {title, MovieAction, showMovieAction} = classes
-
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5
+      }
+    }
+  }
+  
+  const item = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 }
+  }
   const slug = slugify(data.title ||data.name )
   return( 
   
 
-  <div className="div">    
-    <Card className={classes.card}  onClick={handleShowAction} elevation={0}> 
+ <motion.div
+ variants={container}
+ initial="hidden"
+ animate="show">    
+  <Card className={classes.card}  onClick={handleShowAction} elevation={0} variants={item}> 
             
       <CardActionArea>
         <CardMedia
@@ -58,7 +77,7 @@ function DisplayMovies({data, setSeletedVideo, handlePlayTrailer}) {
       </CardActionArea> 
       </Card>
            
-      </div>    
+      </motion.div>    
   );
 }
 

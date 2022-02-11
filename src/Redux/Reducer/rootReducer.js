@@ -1,6 +1,7 @@
 import {combineReducers} from "redux"
 import {TrendingReducer, MovieReducer,  Searchquery, TrailerReducer} from "./HomeReducer"
 import { VideoInfo, similarReducer} from "./SingleReducer"
+import { FetchTvReducer} from "./TvReducer"
 
 
 const allReducer = combineReducers({
@@ -9,7 +10,7 @@ const allReducer = combineReducers({
     similar:similarReducer,
     query:Searchquery,
     Single:VideoInfo,
-  
+    Tv:FetchTvReducer,
     Trailer:TrailerReducer,
 
 })

@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core';
 import Navbar from './Header/Navbar';
 import Trend from '../Pages/Trend';
 import Singlepage from '../Pages/Singlepage';
+import TvSeries from '../Pages/TvSeries';
 
 
 
@@ -61,6 +62,7 @@ const App = () => {
                 <Route  path="/"  element={<Home />}  />
                 <Route  path="/trend"  element={<Trend />}  />
                 <Route  path="/:name/:id"  element={<Singlepage />}  />
+                <Route  path="/tv"  element={<TvSeries />}  />
             </Routes>
         </main>    
       </Router>

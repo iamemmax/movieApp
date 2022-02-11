@@ -1,92 +1,94 @@
-import React, {useState} from 'react';
-import { IconButton, InputBase } from '@material-ui/core';
-// import  * as AiIcons from "react-icons/ai";
-import { makeStyles } from '@material-ui/styles';
-import { useDispatch } from 'react-redux';
-import {SearchQuery} from "../Redux/action/HomepageAction"
+import React, { useState } from "react";
+import { Button, IconButton, InputBase } from "@material-ui/core";
+import  * as AiIcons from "react-icons/ai";
+import { makeStyles } from "@material-ui/styles";
+import { useDispatch } from "react-redux";
+import { SearchQuery } from "../Redux/action/HomepageAction";
+// import { SearchQuery } from "../Redux/action/TvAction";
 
+const useStyles = makeStyles((theme) => ({
+  search: {
+    margin: "0px auto",
+    outline: "none",
+    border: "none",
+    height: "35px",
+    backgroundColor: "#fff",
+    padding: "5px",
+    borderRadius: 50,
+    width: "100%",
+    position: "relative",
 
-
-const useStyles = makeStyles((theme) =>({
-    
-    search:{
-        margin:"0px auto",
-        outline:"none",
-        border:"none",
-        height:"35px",
-        backgroundColor:"#fff",
-        padding:"5px",
-        borderRadius:50,
-        width:"100%",
-        position:"relative",
-
-        [theme.breakpoints.only('md')]: {
-            // backgroundColor:theme.palette.secondary.main,
-            // width: '20ch',
-            width:"500px"
-          },
-        
-
-        '& input':{
-            // width:"100%",
-            paddingLeft:'15px',
-
-        }
+    [theme.breakpoints.only("md")]: {
+      // backgroundColor:theme.palette.secondary.main,
+      // width: '20ch',
+      width: "500px",
     },
-   
-    searchBtn:{
-        position:"absolute",
-        right:"-2rem",
-        top:"50%",
-        color:"#e28904",
-        zIndex:5,
-        transform:"translate(-50%, -50%)",
-        cursor:"pointer",
-        fontSize:20,
 
+    "& input": {
+      // width:"100%",
+      paddingLeft: "15px",
     },
-    searchBox:{
-        width:'100%',
-        display:"flex",
-        justifyContent:"center",
-        alignItems:"center",
-        
-        '& > *':{
-            width:'90%',
-            paddingLeft:'20px',
-      [theme.breakpoints.up("lg")]:{
-          width:"100%"
-      }
+  },
 
+  searchBtn: {
+    position: "absolute",
+    right: "-2rem",
+    top: "50%",
+    color: "#e28904",
+    zIndex: 5,
+    transform: "translate(-50%, -50%)",
+    cursor: "pointer",
+    fontSize: 20,
+  },
+  searchBox: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
 
-        }
-    }
-    
-    
-
-}))
+    "& > *": {
+      width: "90%",
+      paddingLeft: "20px",
+      [theme.breakpoints.up("lg")]: {
+        width: "100%",
+      },
+    },
+  },
+}));
 function Search() {
-    //const [input, setInput] = useState("");
-    const [query, setQuery] = useState("");
-    const dispatch = useDispatch()
-    
-    dispatch(SearchQuery(query))
-  
-const handleQuery =(e)=>{
-    setQuery(e.target.value)
+  const [input, setInput] = useState("");
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+
+  dispatch(SearchQuery(query));
+
+  const handleInput = (e) =>{
+      setInput(e.target.value);
+      
 }
-    const {search, searchBox} = useStyles()
+const handleQuery = (e) => {
+    e.preventDefault()
+    setQuery(input);
+    setInput("")
+  };
+  const { search, searchBox, searchBtn } = useStyles();
   return (
-  <div className={searchBox}>
-                       <IconButton>
-                      
+    <div className={searchBox}>
+      <form onSubmit={handleQuery}> 
+        <IconButton>
+          <InputBase
+            placeholder="search ......"
+            color="secondary"
+            elevation={0}
+            onChange={handleInput}
+            value={input}
+            classes={{ root: search }}
+          />
+        <Button type="submit" disableElevation className={searchBtn}><AiIcons.AiOutlineSearch/></Button>
 
-                   <InputBase  placeholder='search ......' color='secondary'  elevation={0} onInput={handleQuery} value={query} 
-                    classes={{root:search}}/>
-
-                       </IconButton>
-  </div>
-  
+        </IconButton>
+      </form>
+    </div>
   );
 }
 

@@ -26,14 +26,11 @@ const useStyles = makeStyles({
 const DrawerCom = ({open, onClose, drawerlinkBtn}) => {
 const classes = useStyles()
 let navLinks = [
-    {
-    "name":"Home",
-    "path":"/",
-    "icon" : <AiIcons.AiOutlineHome/>
-},
+    
+   
     {
     "name":"Movies",
-    "path":"/movies",
+    "path":"/",
     "icon" : <AiIcons.AiOutlineVideoCamera/>
 },
     {

@@ -1,0 +1,81 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GetTvAction, LoadMoreTv } from "../Redux/action/TvAction";
+import { Button, Grid, Typography } from "@material-ui/core";
+import DisplayTvShow from "../component/Tv/DisplayTvShow";
+import Loading from "../component/Loading";
+import InfiniteScroll from 'react-infinite-scroll-component';
+
+
+const TvSeries = () => {
+    const dispatch = useDispatch();
+    // @DESC import global search query from redux state
+    const query = useSelector((state) => state.query.query);
+
+    //@DESC import tv series from redux state
+
+    const Tvseries = useSelector((state) => state.Tv);
+    let { loading, FilterTv } = Tvseries;
+    // @DESC setting fitered to state
+    const [filter, setFilterTv] = useState("popular");
+
+    const handleTvFilter = (e) => {
+        setFilterTv(e.currentTarget.value);
+    };
+    // console.log(loading);
+    
+    // @DESC loadmore tv series on scroll
+    const [page, setPage] = useState(2);
+    const fetchMoreData =() =>{
+        setPage(page+1)
+        dispatch(LoadMoreTv(filter, page,  query));
+    }
+    console.log(query);
+    
+    useEffect(() => {
+        dispatch(GetTvAction(filter, query));
+    }, [dispatch, filter, query]);
+
+
+    
+    return (
+        <div className="tv-container">
+            <Typography variant="h5" component="h2" gutterBottom>
+                TV SERIES
+            </Typography>
+
+            <div className="tv-box">
+                <div className="filter">
+                    <Button variant="outlined" onClick={handleTvFilter} value="popular">
+                        Popular</Button>
+                    <Button variant="outlined" onClick={handleTvFilter} value="on_the_air">
+                        Latest
+                    </Button>
+                    <Button   variant="outlined" onClick={handleTvFilter} value="top_rated">
+                        Top rated
+                    </Button>
+                </div>
+                    
+  
+ {/* {loadingFilter &&   <Loading />} */}
+            {loading && <Loading />}
+ {FilterTv && <InfiniteScroll  dataLength={FilterTv?.length} next={fetchMoreData} hasMore={true} loader={loading &&  <Loading />}> 
+     
+     <Grid container>
+
+       {FilterTv && FilterTv.map((data)=> (
+         <Grid item xs={6} sm={4} md={3} lg={2} key={data.id}>
+           <DisplayTvShow data={data} />
+
+     </Grid>
+) )}
+
+     
+   </Grid>
+</InfiniteScroll>} 
+            </div>
+        </div>
+    );
+};
+
+export default TvSeries;
