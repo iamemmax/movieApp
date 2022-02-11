@@ -25,7 +25,7 @@ function DisplayMovies({data, setSeletedVideo, handlePlayTrailer}) {
   return( 
   
 
-      
+  <div className="div">    
     <Card className={classes.card}  onClick={handleShowAction} elevation={0}> 
             
       <CardActionArea>
@@ -58,7 +58,7 @@ function DisplayMovies({data, setSeletedVideo, handlePlayTrailer}) {
       </CardActionArea> 
       </Card>
            
-          
+      </div>    
   );
 }
 

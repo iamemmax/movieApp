@@ -24,7 +24,7 @@ function Home() {
 
 
   const Movies = useSelector(state => state.Movies)
-  let { movies, filterMovies} = Movies
+  let { movies, filterMovies, loadingFilter} = Movies
 
  
   const [filterAllMovies, setfilterAllMovies] = useState("popular");
@@ -109,8 +109,9 @@ function Home() {
     
     </div>}
 
-  <InfiniteScroll  scrollThreshold={0.6} dataLength={filterMovies?.length || movies.length} next={fetchMoreData} hasMore={true} loader={Movies.loading && <Loading /> }>
+  <InfiniteScroll  scrollThreshold={0.5} dataLength={filterMovies?.length || movies.length} next={fetchMoreData} hasMore={true} loader={Movies.loadingFilter && <Loading /> }>
  
+{loadingFilter &&   <Loading />}
           <Grid container>
             {filterMovies?.map(data=> (
               <Grid item xs={6} sm={4} md={3} lg={2}  key={data.id}>

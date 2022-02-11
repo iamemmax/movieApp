@@ -41,7 +41,6 @@ const initial = {
 export const MovieReducer = (state = initial, {type, payload}) =>{
     switch (type) {
         case FETCH_MOVIE_RESPONSE:
-        case FILTER_MOVIES_RESPONSE:
         case LOADMORE_MOVIE_RESPONSE:
             return{...state, loading:true}
             case FETCH_MOVIE_SUCCESS:
@@ -49,15 +48,16 @@ export const MovieReducer = (state = initial, {type, payload}) =>{
 
         case  SET_FILTER:
             let movieState = state.movies
-                return {...state, loading:false, filterMovies:movieState}
+                return {...state, loadingFilter:true, filterMovies:movieState}
                 
             
-            
+                case FILTER_MOVIES_RESPONSE:
+                        return{...state, loadingFilter:true}
             case  FILTER_MOVIES_SUCCESS:
-                return {...state, loading:false, filterMovies:payload}
+                return {...state, loadingFilter:false, filterMovies:payload}
             
         case LOADMORE_MOVIE_SUCCESS:
-            return {...state, movies:[...state.movies, ...payload], filterMovies:[...state.movies, ...payload] }
+            return {...state, loading:false, movies:[...state.movies, ...payload], filterMovies:[...state.movies, ...payload] }
             
         case FETCH_MOVIE_FAIL:
         case LOADMORE_MOVIE_FAIL:
