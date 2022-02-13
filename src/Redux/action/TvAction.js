@@ -1,4 +1,4 @@
-import { FETCH_TV_FAIL, FETCH_TV_RESPONSE, FETCH_TV_SUCCESS, LOADMORE_TV_FAIL, LOADMORE_TV_RESPONSE, LOADMORE_TV_SUCCESS, SINGLE_FAIL, SINGLE_RESPONSE, SINGLE_SUCCESS, WATCH_TRAILER_FAIL, WATCH_TRAILER_RESPONSE, WATCH_TRAILER_SUCCESS } from "../constant/constant";
+import { EPISODE_FAIL, EPISODE_RESPONSE, EPISODE_SUCCESS, FETCH_TV_FAIL, FETCH_TV_RESPONSE, FETCH_TV_SUCCESS, LOADMORE_TV_FAIL, LOADMORE_TV_RESPONSE, LOADMORE_TV_SUCCESS, SINGLE_FAIL, SINGLE_RESPONSE, SINGLE_SUCCESS, WATCH_TRAILER_FAIL, WATCH_TRAILER_RESPONSE, WATCH_TRAILER_SUCCESS } from "../constant/constant";
 import axios from "axios"
 let accessKey = process.env.REACT_APP_ACCESSKEY_V3;
 let Apiurl = "https://api.themoviedb.org/3"
@@ -67,5 +67,19 @@ export const TvDetail = (id) => async (dispatch) =>{
         dispatch({type:SINGLE_SUCCESS, payload:response.data})
     } catch (error) {
         dispatch({type:SINGLE_FAIL, payload:error.message})
+    }
+}
+
+// @DESC  get episode by season number
+export const TvEpisodes = (id, number) => async (dispatch) =>{
+    console.log(id, number);
+    dispatch({type:EPISODE_RESPONSE})
+
+    try {
+    const response = await axios.get(`${Apiurl}/tv/${id}/season/${number}?api_key=${accessKey}&append_to_response=videos`)
+    // https://api.themoviedb.org/3/tv/60574/season/1?api_key=5616527c72a97873fdb1898484287dee&language=en-US&append_to_response=videosz
+        dispatch({type:EPISODE_SUCCESS, payload:response.data})
+    } catch (error) {
+        dispatch({type:EPISODE_FAIL, payload:error.message})
     }
 }

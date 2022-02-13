@@ -9,6 +9,7 @@ import Trend from '../Pages/Trend';
 import Singlepage from '../Pages/Singlepage';
 import TvSeries from '../Pages/TvSeries';
 import TvDetails from './Tv/TvDetails';
+import DisplayEpisodes from './Tv/DisplayEpisodes';
 
 
 
@@ -65,6 +66,7 @@ const App = () => {
                 <Route  path="/:name/:id"  element={<Singlepage />}  />
                 <Route  path="/tv"  element={<TvSeries />}  />
                 <Route  path="/tv/:name/:id"  element={<TvDetails />}  />
+                <Route  path="/tv/:id/:name/:season/:number"  element={<DisplayEpisodes />}  />
             </Routes>
         </main>    
       </Router>

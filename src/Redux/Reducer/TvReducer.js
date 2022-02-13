@@ -1,4 +1,7 @@
 import {
+    EPISODE_FAIL,
+    EPISODE_RESPONSE,
+    EPISODE_SUCCESS,
     FETCH_TV_FAIL,
     FETCH_TV_RESPONSE,
     FETCH_TV_SUCCESS,
@@ -55,11 +58,23 @@ export const TvDetail = (state = iniState, { type, payload }) => {
         case SINGLE_RESPONSE:
             return { ...state, loading: true };
 
+        case EPISODE_RESPONSE:
+            return { ...state, loading: true };
+
         case SINGLE_SUCCESS:
             return { ...state, loading: false, single: payload };
 
+            
+        case EPISODE_SUCCESS:
+            return { ...state, loading: false, episode: payload };
+
+
+
        
         case SINGLE_FAIL:
+            return { ...state, loading: false, error: payload };
+
+        case EPISODE_FAIL:
             return { ...state, loading: false, error: payload };
 
         default:

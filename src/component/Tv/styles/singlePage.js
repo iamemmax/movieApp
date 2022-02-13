@@ -45,11 +45,17 @@ export const useStyles = makeStyles((theme)=>({
             alignItem:"center",
            
             '& .ratingText':{
-                paddingRight:"10px"
+                paddingRight:"10px",
+            },
+            '& .myStars':{
+                width:"100px",
+                marginTop:"-2px",
+
             },
             '& .ratingIcon':{
                 flexGrow:"1",
                 marginRight:"30px",
+                // border:"2px solid red"
 
 
             }

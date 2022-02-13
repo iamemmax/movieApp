@@ -54,6 +54,11 @@ export const useStyles = makeStyles((theme)=>({
             // width:"40px"
             textDecoration:"none"
         },
+        '&  .action':{
+            [theme.breakpoints.down("sm")]:{
+                display:"none"
+            }
+        },
 
         
 
@@ -62,5 +67,23 @@ export const useStyles = makeStyles((theme)=>({
             transform:"scale(1)",
     
             },
+    },
+
+    // display Episode  component
+    banner_img:{
+        width:"100%",
+        height:"300px",
+
+        ' & img':{
+            height:"auto",
+            width:"100%",
+            Object:"cover"
+        }
+    },
+    episode1:{
+
+        '& .card-title':{
+            fontSize:14,
+        }
     }
 }))

@@ -40,7 +40,7 @@ const TvDetails = () => {
             </div>
             <Grid container className="rating-box" justifyContent="space-between">
               <Grid item className="rating" xs={6}>
-                <Typography variant="body1" className={"ratingText"}>
+                <Typography variant="body1" className="ratingText">
                
                   Ratings:
                 </Typography>
@@ -54,7 +54,9 @@ const TvDetails = () => {
                   halfIcon={<i className="fa fa-star-half-alt"></i>}
                   fullIcon={<i className="fa fa-star"></i>}
                   activeColor="#ffd700"
-                  edit={false} />
+                  edit={false}  
+                  classNames="myStars"
+                  />
               </Grid>
 
               <Grid item className="rating" xs={6}>
@@ -219,7 +221,7 @@ const TvDetails = () => {
       
                
                
-                          <div className="playIcon"> <Link to={`/tv/${name}/${slug(data.name)}/${data.id}`}><AiIcons.AiOutlinePlayCircle /></Link></div>
+                          <div className="playIcon"> <Link to={`/tv/${id}/${slug(name)}/season/${data.season_number}`}><AiIcons.AiOutlinePlayCircle /></Link></div>
             </CardActionArea> 
                  </Card>
                  </Grid>

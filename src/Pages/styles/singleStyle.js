@@ -61,11 +61,37 @@ table:{paddengLeft:0},
 
     },
     ratingIcon:{
-        marginTop:"5px"
+        marginTop:"5px",
+        // border:"2px solid red"
+        
     },
+    stars:{
+        '& .rating':{
+            display:"flex",
+            alignItem:"center",
+           
+            '& .ratingText':{
+                paddingRight:"10px",
+            },
+            '& .myStars':{
+                width:"100px",
+                marginTop:"-2px",
+
+            },
+            '& .ratingIcon':{
+                flexGrow:"1",
+                marginRight:"30px",
+                // border:"2px solid red"
+
+
+            }
+        },
+        
+    }
+    ,
     overview:{
         lineHeight:"30px",
-        padding:"5px 10px",
+        padding:"10px 0px",
         fontSize:"14px"
 
     },
