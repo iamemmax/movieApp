@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         width:"91%",
         backgroundColor:"#022431a2",
         position:"fixed",
-        top:"4rem",
+        top:"3.5rem",
         zIndex:"10",
         margin:"0px auto",
         display:"flex",
@@ -19,7 +19,15 @@ const useStyles = makeStyles((theme) => ({
         alignItems:"center",
 
         [theme.breakpoints.down('md')]: {
-            height:"300px",
+            height:"350px",
+            right:0,
+            left:0,
+            width:"100%"
+          },
+        [theme.breakpoints.only('md')]: {
+            height:"450px",
+            width:"100%",
+
             right:0,
             left:0,
           },
@@ -39,9 +47,12 @@ const useStyles = makeStyles((theme) => ({
             [theme.breakpoints.down('md')]: {
                 height:"300px"
               },
+            [theme.breakpoints.only('md')]: {
+                height:"400px"
+              },
         },
         '& .close-Youtube':{
-            zIndex:99,
+            zIndex:9999,
           bottom:"6rem",
        
         },

@@ -1,27 +1,38 @@
-import React from 'react';
-import {Card, CardActionArea, CardContent, CardMedia,  Typography} from "@material-ui/core"
-// import OutsideClickHandler from 'react-outside-click-handler';
-// import slugify from 'react-slugify';
-// import { Link } from 'react-router-dom';
-// import  * as AiIcons from "react-icons/ai";
-import {useStyles} from "../Homepage/styles/DisplayMovie"
-
+import React, { useState } from 'react';
+import {Button, Card, CardActionArea, CardContent, CardMedia,  Typography} from "@material-ui/core"
+import OutsideClickHandler from 'react-outside-click-handler';
+import slugify from 'react-slugify';
+import { Link } from 'react-router-dom';
+import  * as AiIcons from "react-icons/ai";
+import {useStyles} from "../Tv/styles/tvstyles"
+import {TvTrailer} from "../../Redux/action/TvAction"
+import { useDispatch, useSelector } from 'react-redux';
+import PreviewVideo  from "../../component/PreviewVideo"
 
 
 
 function DisplayTvShow({data}) {
+  const dispatch = useDispatch()
+  const slug = slugify(data.title ||data.name )
+  const [play, setPlay] = useState(false);
+  const [movieAction, setMovieAction] = useState(false);
+  const handlePlay = (data) =>{
+    const id = data.id
+    
+    dispatch(TvTrailer(id))
 
-  const {title,  card} = useStyles()
-  // const slug = slugify(data.title ||data.name )
-  // const [play, setplay] = useState(false);
-  // const handlePlay = () =>{
+    setPlay(true)
+  }
+  const {title,  card, tvActionBtnsBox, TvWrappaer} = useStyles()
+const Trailer  = useSelector(state => state.Trailer.trailer)
 
-  // }
   return( 
-  
 
+<div>
+
+    {play && ( <div className={TvWrappaer}><PreviewVideo videoId={Trailer?.key}  handleCloseVideo={()=>setPlay(false)}/></div>)}
       
-    <Card className={card}  elevation={0}> 
+    <Card className={card}  elevation={0}  onClick={()=>setMovieAction(true)}> 
 
       <CardActionArea>
         <CardMedia
@@ -39,21 +50,21 @@ function DisplayTvShow({data}) {
       </CardActionArea> 
       
 
-      {/* <div className={movieAction ? MovieAction && showMovieAction   : MovieAction  }> */}
-      {/* <OutsideClickHandler onOutsideClick={() => setMovieAction(false)}>
-         <div className={movieAction ? MovieAction && showMovieAction   : MovieAction  }>
+      <div className={tvActionBtnsBox}>
+     <OutsideClickHandler onOutsideClick={() => setMovieAction(false)}>
+         <div className={movieAction ?  "middle-container showAction": "middle-container"} >
            <div className="play" onClick={()=> handlePlay(data)} >
              <Button variant="contained" color="primary" size="small"  startIcon={<AiIcons.AiOutlinePlayCircle />}><span className="action" >Play</span></Button>
             </div>
            <div className="View">
-            <Link to={`/${slug}/${data.id}`}> <Button variant="contained" size="small"endIcon={<AiIcons.AiOutlineEyeInvisible/>}> <span className="action">View</span> </Button>
+            <Link to={`/tv/${slug}/${data.id}`}> <Button variant="contained" size="small"endIcon={<AiIcons.AiOutlineEyeInvisible/>}> <span className="action">View</span> </Button>
              </Link></div>
          </div>
-         </OutsideClickHandler> */}
-       {/* </div> */}
+         </OutsideClickHandler> 
+       </div>
  
     </Card>
-      
+    </div>   
            
           
   );

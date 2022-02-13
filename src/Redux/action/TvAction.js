@@ -1,4 +1,4 @@
-import { FETCH_TV_FAIL, FETCH_TV_RESPONSE, FETCH_TV_SUCCESS, LOADMORE_TV_FAIL, LOADMORE_TV_RESPONSE, LOADMORE_TV_SUCCESS } from "../constant/constant";
+import { FETCH_TV_FAIL, FETCH_TV_RESPONSE, FETCH_TV_SUCCESS, LOADMORE_TV_FAIL, LOADMORE_TV_RESPONSE, LOADMORE_TV_SUCCESS, SINGLE_FAIL, SINGLE_RESPONSE, SINGLE_SUCCESS, WATCH_TRAILER_FAIL, WATCH_TRAILER_RESPONSE, WATCH_TRAILER_SUCCESS } from "../constant/constant";
 import axios from "axios"
 let accessKey = process.env.REACT_APP_ACCESSKEY_V3;
 let Apiurl = "https://api.themoviedb.org/3"
@@ -38,5 +38,34 @@ export const LoadMoreTv = (filter, page, query,) => async (dispatch) =>{
         dispatch({type:LOADMORE_TV_SUCCESS, payload:response.data.results})
     } catch (error) {
         dispatch({type:LOADMORE_TV_FAIL, error:error.message})
+    }
+
+}
+
+export const TvTrailer = (id) => async (dispatch) =>{
+    dispatch({type:WATCH_TRAILER_RESPONSE})
+    console.log(id);
+    try {
+    let url = `${Apiurl}/tv/${id}/videos?api_key=${accessKey}&language=en-US`
+    const response = await  axios.get(url)
+    console.log(response);
+    let trailerVideo = response.data.results.find(data => data.name === "Official Trailer" || data.type === "Trailer")
+
+    dispatch({type:WATCH_TRAILER_SUCCESS, payload:trailerVideo})
+} catch (error) {
+    dispatch({type:WATCH_TRAILER_FAIL, payload:error.message})
+    
+}
+}
+
+export const TvDetail = (id) => async (dispatch) =>{
+    dispatch({type:SINGLE_RESPONSE})
+
+    try {
+    const response = await axios.get(`${Apiurl}/tv/${id}?api_key=${accessKey}&append_to_response=videos`)
+ 
+        dispatch({type:SINGLE_SUCCESS, payload:response.data})
+    } catch (error) {
+        dispatch({type:SINGLE_FAIL, payload:error.message})
     }
 }

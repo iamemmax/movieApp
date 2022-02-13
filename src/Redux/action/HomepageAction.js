@@ -63,7 +63,7 @@ export const LoadMoreMovies = (query, page, filterAllMovies) => async (dispatch)
         let searchUrl = `${Apiurl}/search/movie/?api_key=${accessKey}&page=${page}&query=${query}`
         let mainUrl =  `${Apiurl}/movie/${filterAllMovies}/?api_key=${accessKey}&page=${page}`
     
-        query ? url = searchUrl : url = mainUrl
+         query ? url = searchUrl : url  = mainUrl
         const response = await axios.get(url)
         console.log(response);
         dispatch({type:LOADMORE_MOVIE_SUCCESS, payload:response.data.results})

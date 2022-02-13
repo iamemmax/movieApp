@@ -5,6 +5,7 @@ import { Button, Grid, Typography } from "@material-ui/core";
 import DisplayTvShow from "../component/Tv/DisplayTvShow";
 import Loading from "../component/Loading";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useStyles } from "../component/Tv/styles/tvstyles";
 
 
 const TvSeries = () => {
@@ -37,21 +38,22 @@ const TvSeries = () => {
     }, [dispatch, filter, query]);
 
 
+    const {tvContainer} = useStyles()
     
     return (
-        <div className="tv-container">
-            <Typography variant="h5" component="h2" gutterBottom>
+        <div className={tvContainer}>
+            <Typography variant="h5" component="h2" className="title" gutterBottom>
                 TV SERIES
             </Typography>
 
-            <div className="tv-box">
+            <div className="tv-box" >
                 <div className="filter">
-                    <Button variant="outlined" onClick={handleTvFilter} value="popular">
+                    <Button variant="outlined" className={filter === "popular" ? "active" : ""} onClick={handleTvFilter} value="popular">
                         Popular</Button>
-                    <Button variant="outlined" onClick={handleTvFilter} value="on_the_air">
+                    <Button variant="outlined" className={filter === "on_the_air" ? "active" : "" } onClick={handleTvFilter} value="on_the_air">
                         Latest
                     </Button>
-                    <Button   variant="outlined" onClick={handleTvFilter} value="top_rated">
+                    <Button   variant="outlined" className={filter === "top_rated" ? "active" : "" }  onClick={handleTvFilter} value="top_rated">
                         Top rated
                     </Button>
                 </div>
@@ -59,20 +61,22 @@ const TvSeries = () => {
   
  {/* {loadingFilter &&   <Loading />} */}
             {loading && <Loading />}
- {FilterTv && <InfiniteScroll  dataLength={FilterTv?.length} next={fetchMoreData} hasMore={true} loader={loading &&  <Loading />}> 
-     
-     <Grid container>
 
-       {FilterTv && FilterTv.map((data)=> (
-         <Grid item xs={6} sm={4} md={3} lg={2} key={data.id}>
-           <DisplayTvShow data={data} />
-
-     </Grid>
-) )}
+                {FilterTv && <InfiniteScroll  dataLength={FilterTv?.length} next={fetchMoreData} hasMore={true} loader={loading &&  <Loading />}> 
+                
+                <Grid container>
+                
+                {FilterTv && FilterTv.map((data)=> (
+                    <Grid item xs={6} sm={4} md={3} lg={2} key={data.id}>
+                    <DisplayTvShow data={data} />
+                    
+                    </Grid>
+                    ) )}
 
      
    </Grid>
-</InfiniteScroll>} 
+</InfiniteScroll>}
+                    
             </div>
         </div>
     );

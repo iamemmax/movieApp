@@ -89,13 +89,17 @@ function Home() {
     <div>
 
           {/* trending movies */}
-            {trending.loading && <Loading />}
-          <Typography variant='h6' component="h2" gutterBottom>TRENDING MOVIES</Typography> 
+            {trending.loading ? (<><Loading /></>) : (
+
+             <>
+            <Typography variant='h6' component="h2" gutterBottom>TRENDING MOVIES</Typography> 
             <Slider {...settings}>
             {trending && trending.map(data=> <DisplayTrending  handlePlayTrailer={handlePlayTrailer} movies={movies} setSeletedVideo={setSeletedVideo} data={data}  key={data.id} className={grids} />
-           
            )}
+           
            </Slider>
+           </>
+              )}
            </div>
 
 
@@ -109,9 +113,10 @@ function Home() {
     
     </div>}
 
-  <InfiniteScroll  scrollThreshold={0.5} dataLength={filterMovies?.length || movies.length} next={fetchMoreData} hasMore={true} loader={Movies.loadingFilter && <Loading /> }>
+{loadingFilter ?(<Loading />) : (
+
+  <InfiniteScroll  scrollThreshold={0.7} dataLength={filterMovies?.length || movies.length} next={fetchMoreData} hasMore={true} loader={movies.loading &&( <Loading /> )}>
  
-{loadingFilter &&   <Loading />}
           <Grid container>
             {filterMovies?.map(data=> (
               <Grid item xs={6} sm={4} md={3} lg={2}  key={data.id}>
@@ -123,6 +128,7 @@ function Home() {
 
               </Grid>
             </InfiniteScroll>
+            )}
 
 
 

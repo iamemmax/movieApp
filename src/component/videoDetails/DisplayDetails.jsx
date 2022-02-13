@@ -3,10 +3,10 @@ import { Grid, Typography, TableContainer, Table, TableHead, TableBody, TableRow
 import {useStyles} from "../../Pages/styles/singleStyle"
 import ReactStars from "react-rating-stars-component";
 import  * as AiIcons from "react-icons/ai";
-
-import moment from "moment"
-// import {format} from "https://cdn.skypack.dev/d3-format@3";
 import {format} from "d3-format";
+import moment from "moment"
+
+// import {format} from "https://cdn.skypack.dev/d3-format@3";
 
 import YouTube from 'react-youtube';
 
