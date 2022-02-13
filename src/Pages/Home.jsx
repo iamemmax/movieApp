@@ -84,9 +84,7 @@ function Home() {
     <Helmet>
                 <meta charSet="utf-8" />
                 <title>Hompage</title>
-                <link rel="canonical" href="https://freaky-movie.netlify.app" />
                 <meta name="description" content="freaky movies is an online movies application, for watching, searching any movies or tv series  "/>
-                 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     
 
             </Helmet>
