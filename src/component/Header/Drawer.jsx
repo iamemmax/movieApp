@@ -3,7 +3,6 @@ import { NavLink} from "react-router-dom"
 import React from 'react';
 import  * as AiIcons from "react-icons/ai";
 import  * as FaIcons from "react-icons/fa";
-import  * as SiIcons from "react-icons/si";
 import { makeStyles } from '@material-ui/styles';
 
 
@@ -33,15 +32,7 @@ let navLinks = [
     "path":"/",
     "icon" : <AiIcons.AiOutlineVideoCamera/>
 },
-    {
-    "name":"Episode",
-    "path":"/episode",
-    "icon" : <AiIcons.AiOutlineCompass/>
-},
-    {"name":"Trending",
-    "path":"/Trending", 
-    "icon": <SiIcons.SiTrendmicro/>    
-},
+   
     {"name":"Tv series",
     "path":"/tv", 
     "icon": <FaIcons.FaTv/>    

@@ -160,6 +160,10 @@ const TvDetails = () => {
     </List>
     
               </div>
+
+
+
+
            
            
               <div className="production-company">
@@ -192,6 +196,7 @@ const TvDetails = () => {
 
 
       )}
+   
 
               {single && <div className={seasonsFilms} >
               <Typography   xs={5} variant="h6" component="h2" noWrap gutterBottom className="name">

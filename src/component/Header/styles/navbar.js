@@ -3,7 +3,7 @@ export const useStyles = makeStyles((theme) => ({
     laptop:{
         width:"100%",
         display:"flex",
-        justifyContent:"space-between",
+        justifyContent:"space-around",
         alignItems:"center",
 
         '& .logo a':{
@@ -38,7 +38,7 @@ export const useStyles = makeStyles((theme) => ({
     mobile:{
         width:"100%",
         display:"flex",
-        justifyContent:"space-between",
+        justifyContent:"space-around",
         alignItems:"center",
 
         '& .logo a':{

@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
 
     "& > *": {
-      width: "90%",
+      width: "100%",
       paddingLeft: "20px",
       [theme.breakpoints.up("lg")]: {
         width: "100%",

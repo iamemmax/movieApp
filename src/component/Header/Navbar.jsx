@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {AppBar, Button, Tab, Tabs, Toolbar, Typography, useMediaQuery, useTheme, Container } from "@material-ui/core"
+import {AppBar, Tab, Tabs, Toolbar, Typography, useMediaQuery, useTheme, Container } from "@material-ui/core"
 import DrawerCom from './Drawer';
 import  * as FaIcons from "react-icons/fa";
 import { Link, NavLink } from 'react-router-dom';
@@ -26,13 +26,7 @@ function Navbar() {
         "path":"/tv", 
     },
     
-        {
-        "name":"Episode",
-        "path":"/episode",
-    },
-        {"name":"Trending",
-        "path":"/Trending", 
-    },
+
         
     ]
     const [openDrawer, setOpenDrawer] = useState(false);
@@ -91,7 +85,7 @@ function Navbar() {
 
                 <div className="watchList">
 
-                    <Button variant="contained" color="secondary" className="watchList">WatchList</Button>
+                    {/* <Button variant="contained" color="secondary" className="watchList">WatchList</Button> */}
                 </div>
                 </div>
                 }

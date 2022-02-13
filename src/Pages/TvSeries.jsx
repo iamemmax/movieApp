@@ -6,6 +6,7 @@ import DisplayTvShow from "../component/Tv/DisplayTvShow";
 import Loading from "../component/Loading";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useStyles } from "../component/Tv/styles/tvstyles";
+import {Helmet} from "react-helmet"
 
 
 const TvSeries = () => {
@@ -42,6 +43,19 @@ const TvSeries = () => {
     
     return (
         <div className={tvContainer}>
+
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title> Tv series</title>
+                <link rel="canonical" href="https://freaky-movie.netlify.app/tv" />
+                <meta name="description" content="freaky movies is an online movies application, for watching, searching any movies from tv series  "/>
+                <meta name="keyword" content="tv, episode, seris, season, "/>
+                 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    
+
+            </Helmet>
+
+
             <Typography variant="h5" component="h2" className="title" gutterBottom>
                 TV SERIES
             </Typography>

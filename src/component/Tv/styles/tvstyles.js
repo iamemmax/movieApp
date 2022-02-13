@@ -80,10 +80,44 @@ export const useStyles = makeStyles((theme)=>({
             Object:"cover"
         }
     },
+    
+    card_header:{
+        fontSize:22,
+        padding:"10px 0",
+        //color:"red",
+        textTransform:"capitalize"
+    },
     episode1:{
-
         '& .card-title':{
             fontSize:14,
         }
+    },
+    top_box:{
+        marginBottom:"30px",
+        height:"400px",
+        overFlow:"hidden",
+        
+        [theme.breakpoints.down("md")]:{
+            height:"auto"
+        },
+        '&  img':{
+            height:"400px",
+            width:"100%",
+            objectFit:"cover"
+        }, 
+        '&  .card-title':{
+            fontSize:20,
+            padding:"10px 0",
+            textTransform:"capitalize"
+
+        },
+        '& .card-desc':{
+            fontSize:14,
+            padding:"5px 0",
+            lineHeight:"30px"
+
+        }
+
+
     }
 }))

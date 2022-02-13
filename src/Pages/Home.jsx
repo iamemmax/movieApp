@@ -13,7 +13,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import FilterMovies from '../component/Homepage/FilterMovies';
-
+import {Helmet} from "react-helmet"
 
 
 function Home() {
@@ -79,7 +79,17 @@ function Home() {
     dispatch(LoadMoreMovies(query, page, filterAllMovies ))
   }
   return (
-  <div>
+<>
+   <div>
+    <Helmet>
+                <meta charSet="utf-8" />
+                <title>Hompage</title>
+                <link rel="canonical" href="https://freaky-movie.netlify.app" />
+                <meta name="description" content="freaky movies is an online movies application, for watching, searching any movies or tv series  "/>
+                 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    
+
+            </Helmet>
   
 
 {/* <PreviewVideo  /> */}
@@ -138,6 +148,7 @@ function Home() {
  
      
   </div>
+  </>
   );
 }
 

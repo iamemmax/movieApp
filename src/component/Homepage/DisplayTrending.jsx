@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import {useStyles} from "../Homepage/styles/DisplayMovie"
 import OutsideClickHandler from 'react-outside-click-handler';
 import  * as AiIcons from "react-icons/ai";
-
+import { motion } from 'framer-motion';
 import slugify from 'react-slugify';
 
 
@@ -26,13 +26,38 @@ function DisplayTrending({data, setSeletedVideo, handlePlayTrailer}) {
   let {title, MovieAction, showMovieAction} = classes
   const slug = slugify(data.title ||data.name )
 
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        delay: 0.5
+      }
+    }
+  }
+  
+  const item = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        ease: "easeInOut"
+      }
+    }
+  }
   
   return( 
   
 
       
-      
-    <Card className={classes.card}  onClick={handleShowAction} elevation={0}> 
+      <motion.div
+      variants={container}
+      initial="hidden"
+      animate="show" 
+      whileHover={{ scale: 0.9 }}
+      >
+    <Card className={classes.card}  onClick={handleShowAction} elevation={0} variant={item}> 
               
     <CardActionArea>
       <CardMedia
@@ -63,7 +88,7 @@ function DisplayTrending({data, setSeletedVideo, handlePlayTrailer}) {
        </div>
     </CardActionArea> 
     </Card>
-         
+       </motion.div>  
         
           
   );

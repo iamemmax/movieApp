@@ -28,14 +28,19 @@ function DisplayMovies({data, setSeletedVideo, handlePlayTrailer}) {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.5
+        delay: 0.5
       }
     }
   }
   
   const item = {
     hidden: { opacity: 0 },
-    show: { opacity: 1 }
+    show: {
+      opacity: 1,
+      transition: {
+        ease: "easeInOut"
+      }
+    }
   }
   const slug = slugify(data.title ||data.name )
   return( 
@@ -44,7 +49,9 @@ function DisplayMovies({data, setSeletedVideo, handlePlayTrailer}) {
  <motion.div
  variants={container}
  initial="hidden"
- animate="show">    
+ animate="show" 
+ whileHover={{ scale: 1.1 }}
+ >    
   <Card className={classes.card}  onClick={handleShowAction} elevation={0} variants={item}> 
             
       <CardActionArea>

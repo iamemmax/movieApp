@@ -8,7 +8,7 @@ import {useStyles} from "../Tv/styles/tvstyles"
 import {TvTrailer} from "../../Redux/action/TvAction"
 import { useDispatch, useSelector } from 'react-redux';
 import PreviewVideo  from "../../component/PreviewVideo"
-
+import {motion} from "framer-motion"
 
 
 function DisplayTvShow({data}) {
@@ -25,14 +25,37 @@ function DisplayTvShow({data}) {
   }
   const {title,  card, tvActionBtnsBox, TvWrappaer} = useStyles()
 const Trailer  = useSelector(state => state.Trailer.trailer)
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delay: 0.5
+    }
+  }
+}
 
+const item = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      ease: "easeInOut"
+    }
+  }
+}
   return( 
 
-<div>
+<motion.div
+variants={container}
+initial="hidden"
+animate="show" 
+whileHover={{ scale: 0.9 }}
+>
 
     {play && ( <div className={TvWrappaer}><PreviewVideo videoId={Trailer?.key}  handleCloseVideo={()=>setPlay(false)}/></div>)}
       
-    <Card className={card}  elevation={0}  onClick={()=>setMovieAction(true)}> 
+    <Card className={card}  elevation={0}  onClick={()=>setMovieAction(true)}variant={item}> 
 
       <CardActionArea>
         <CardMedia
@@ -64,7 +87,7 @@ const Trailer  = useSelector(state => state.Trailer.trailer)
        </div>
  
     </Card>
-    </div>   
+    </motion.div>   
            
           
   );

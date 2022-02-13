@@ -12,6 +12,7 @@ import {useStyles} from "./styles//singleStyle"
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loading from '../component/Loading';
 import PreviewVideo from '../component/PreviewVideo';
+import {Helmet} from "react-helmet"
 
 function Singlepage() {
 const {id} = useParams()
@@ -76,6 +77,16 @@ console.log(selectedVideo);
 
   return (
   <div>
+
+<Helmet>
+                <meta charSet="utf-8" />
+                <title>{single.title || single.name}</title>
+                <link rel="canonical" href="https://freaky-movie.netlify.app" />
+                <meta name="description" content={single.overview}/>
+                 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    
+
+            </Helmet>
   {play && <PreviewVideo videoId={trailer.key}  handleCloseVideo={()=>setPlay(false)}/>}
       
       {loading &&   <Loading />}

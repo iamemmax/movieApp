@@ -10,6 +10,7 @@ import Singlepage from '../Pages/Singlepage';
 import TvSeries from '../Pages/TvSeries';
 import TvDetails from './Tv/TvDetails';
 import DisplayEpisodes from './Tv/DisplayEpisodes';
+import {Helmet} from "react-helmet";
 
 
 
@@ -51,7 +52,22 @@ const theme = createTheme({
 console.log(theme);
 
 const App = () => {
+
+
   return (
+    <>
+      <Helmet>
+                <meta charSet="utf-8" />
+                <title>Freaky movie</title>
+                <link rel="canonical" href="https://freaky-movie.netlify.app" />
+                <link rel="shortcut icon" href="https://cdn-icons.flaticon.com/png/128/2915/premium/2915640.png?token=exp=1644830467~hmac=12da10544ab536cdd71d55b653a3ada4" />
+                
+                <meta name="description" content="freaky movies is an online movies application, for watching, searching any movies or tv series  "/>
+                 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    
+
+            </Helmet>
+    
     <ThemeProvider theme={theme}>
 
   <Container>
@@ -73,6 +89,7 @@ const App = () => {
 
   </Container>
   </ThemeProvider>
+    </>
   );
 };
 

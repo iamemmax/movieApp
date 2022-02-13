@@ -46,6 +46,7 @@ padding:"10px 0",
 
 '&  .action ':{
   padding:"2px",
+  zIndex:999,
 
   
   [theme.breakpoints.down('sm')]:{
